@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title><![CDATA[iOS之RN环境搭建]]></title>
     <url>%2F2018%2F10%2F10%2FiOS%E4%B9%8BRN%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[title: iOS之RN环境搭建date: 2018-10-10 13:46:33 tags:React Native-iOS环境搭建]]></content>
+    <content type="text"><![CDATA[React Native-iOS环境搭建]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>ReactNative</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
