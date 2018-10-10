@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="React Native-iOS环境搭建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T05:49:22.599Z">
+<meta property="og:updated_time" content="2018-10-10T05:54:14.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS之RN环境搭建">
 <meta name="twitter:description" content="React Native-iOS环境搭建">
@@ -385,6 +385,37 @@
         <p>React Native-iOS环境搭建  </p>
 <a id="more"></a>
 <!--点击显示更多-->
+<h2 id="一-React-Native-主要依赖以下环境"><a href="#一-React-Native-主要依赖以下环境" class="headerlink" title="一. React Native 主要依赖以下环境:"></a>一. React Native 主要依赖以下环境:</h2><ul>
+<li>Mac OS X 操作系统</li>
+<li>Xcode,推荐使用7.3.0或者更高系统</li>
+<li>Node.js V6.2.1或者最新版本</li>
+<li>Watchman和workflow</li>
+<li>NVM </li>
+</ul>
+<h2 id="二-下载Xcode，这个就不多讲了，直接在App-Store下载即可"><a href="#二-下载Xcode，这个就不多讲了，直接在App-Store下载即可" class="headerlink" title="二.下载Xcode，这个就不多讲了，直接在App Store下载即可"></a>二.下载Xcode，这个就不多讲了，直接在App Store下载即可</h2><h2 id="三-安装Node-js，只要百度搜索Node-js，进入Node-js官网，直接下载"><a href="#三-安装Node-js，只要百度搜索Node-js，进入Node-js官网，直接下载" class="headerlink" title="三.安装Node.js，只要百度搜索Node.js，进入Node.js官网，直接下载"></a>三.安装Node.js，只要百度搜索Node.js，进入Node.js官网，直接下载</h2><h2 id="四-安装Homebrew-打开-Homebrew官网-语言选择简体中文-按照文档步骤进行安装即可"><a href="#四-安装Homebrew-打开-Homebrew官网-语言选择简体中文-按照文档步骤进行安装即可" class="headerlink" title="四.安装Homebrew, 打开 Homebrew官网, 语言选择简体中文, 按照文档步骤进行安装即可"></a>四.安装Homebrew, 打开 Homebrew官网, 语言选择简体中文, 按照文档步骤进行安装即可</h2><h2 id="五-打开终端依次输入命令："><a href="#五-打开终端依次输入命令：" class="headerlink" title="五.打开终端依次输入命令："></a>五.打开终端依次输入命令：</h2><ul>
+<li><p>安装Homebrew:  </p>
+<figure class="highlight ruby"><figcaption><span>-e "$(curl -fsSL</span><a href="https://raw.githubusercontent.com/Homebrew/install/master/install)" "="" target="_blank" rel="noopener">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string">- 安装Node:  </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>brew install node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Yarn  </p>
+<figure class="highlight plain"><figcaption><span>install -g yarn react-native-cli</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```   </span><br><span class="line">- 安装Watchman   </span><br><span class="line">```brew install watchman</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Flow<br>```brew install flow</p>
+<pre><code>```brew update &amp;&amp; brew upgrade
+</code></pre></li>
+<li>安装NVM<br>```git clone <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a><pre><code>```cd nvm/
+</code></pre><pre><code class="ls">
+</code></pre>
+```source nvm.sh<pre><code>```nvm
+</code></pre>```nvm ls -remote N/A<pre><code>```nvm ls
+</code></pre></li>
+</ul>
+<h2 id="六-环境搭建完毕"><a href="#六-环境搭建完毕" class="headerlink" title="六.环境搭建完毕"></a>六.环境搭建完毕</h2><h2 id="七-创建项目"><a href="#七-创建项目" class="headerlink" title="七.创建项目"></a>七.创建项目</h2><ul>
+<li>在桌面创建一个文件夹HelloWorld</li>
+<li>打开终端进入此文件夹（cd）</li>
+<li>终端输入:<br><code>react-native init HelloWorld</code>   </li>
+<li>在xcode中，使用快捷键<code>cmd + R</code>即可启动项目。基本的Xcode功能可以熟悉，比如模拟器的选择等。启动完成后，你会看到React-Packger和iOS模拟器，具体的效果如下，说明你创建项目成功了。</li>
+</ul>
+
       
     </div>
     
@@ -414,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/08/ReactNative环境搭建之iOS开发/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/02/06/我的第一文章/" rel="next" title="我的第一篇文章">
+                <i class="fa fa-chevron-left"></i> 我的第一篇文章
               </a>
             
           </div>
@@ -487,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -503,7 +543,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -550,6 +590,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-React-Native-主要依赖以下环境"><span class="nav-number">1.</span> <span class="nav-text">一. React Native 主要依赖以下环境:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-下载Xcode，这个就不多讲了，直接在App-Store下载即可"><span class="nav-number">2.</span> <span class="nav-text">二.下载Xcode，这个就不多讲了，直接在App Store下载即可</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-安装Node-js，只要百度搜索Node-js，进入Node-js官网，直接下载"><span class="nav-number">3.</span> <span class="nav-text">三.安装Node.js，只要百度搜索Node.js，进入Node.js官网，直接下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-安装Homebrew-打开-Homebrew官网-语言选择简体中文-按照文档步骤进行安装即可"><span class="nav-number">4.</span> <span class="nav-text">四.安装Homebrew, 打开 Homebrew官网, 语言选择简体中文, 按照文档步骤进行安装即可</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-打开终端依次输入命令："><span class="nav-number">5.</span> <span class="nav-text">五.打开终端依次输入命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-环境搭建完毕"><span class="nav-number">6.</span> <span class="nav-text">六.环境搭建完毕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七-创建项目"><span class="nav-number">7.</span> <span class="nav-text">七.创建项目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

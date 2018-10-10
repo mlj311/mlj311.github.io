@@ -3,18 +3,13 @@
   <entry>
     <title><![CDATA[iOS之RN环境搭建]]></title>
     <url>%2F2018%2F10%2F10%2FiOS%E4%B9%8BRN%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[React Native-iOS环境搭建]]></content>
+    <content type="text"><![CDATA[React Native-iOS环境搭建 一. React Native 主要依赖以下环境: Mac OS X 操作系统 Xcode,推荐使用7.3.0或者更高系统 Node.js V6.2.1或者最新版本 Watchman和workflow NVM 二.下载Xcode，这个就不多讲了，直接在App Store下载即可三.安装Node.js，只要百度搜索Node.js，进入Node.js官网，直接下载四.安装Homebrew, 打开 Homebrew官网, 语言选择简体中文, 按照文档步骤进行安装即可五.打开终端依次输入命令： 安装Homebrew: -e "$(curl -fsSL]]></content>
       <categories>
         <category>iOS</category>
       </categories>
       <tags>
         <tag>ReactNative</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2018%2F10%2F08%2FReactNative%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B9%8BiOS%E5%BC%80%E5%8F%91%2F</url>
-    <content type="text"><![CDATA[title: ReactNative环境搭建之iOS开发date: 2018-10-08 10:35:39categories: notestags: - ReactNativeReact Native-iOS环境搭建 一. React Native 主要依赖以下环境: Mac OS X 操作系统 Xcode,推荐使用7.3.0或者更高系统 Node.js V6.2.1或者最新版本 Watchman和workflow NVM 二.下载Xcode，这个就不多讲了，直接在App Store下载即可三.安装Node.js，只要百度搜索Node.js，进入Node.js官网，直接下载四.安装Homebrew, 打开 Homebrew官网, 语言选择简体中文, 按照文档步骤进行安装即可五.打开终端依次输入命令： 安装Homebrew: -e "$(curl -fsSL]]></content>
   </entry>
   <entry>
     <title><![CDATA[我的第一篇文章]]></title>
