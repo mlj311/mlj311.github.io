@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[mljIsIronMan]]></title>
-    <url>%2F2018%2F10%2F22%2FmljIsIronMan%2F</url>
-    <content type="text"><![CDATA[茅露军是钢铁侠]]></content>
+    <title><![CDATA[Xcode10升级后的问题]]></title>
+    <url>%2F2018%2F11%2F05%2FXcode10%E5%8D%87%E7%BA%A7%E5%90%8E%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[#解决ibrary not found for -lstdc++.6.0.9解决方案： 真机：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 模拟器：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/ 首先打开链接下载libstdc++.6.0.9.tbd；libstdc++.6.0.9.tbd下载地址密码：yc0m 进入到上述目录下，把libstdc++.6.0.9.tbd复制进去；恭喜你，编译成功]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>Xcode</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[iOS之RN环境搭建]]></title>
