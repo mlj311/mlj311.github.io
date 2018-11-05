@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Xcode10升级后的问题]]></title>
     <url>%2F2018%2F11%2F05%2FXcode10%E5%8D%87%E7%BA%A7%E5%90%8E%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[解决ibrary not found for -lstdc++.6.0.9 解决方案： 真机：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 模拟器：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/ 首先打开链接下载libstdc++.6.0.9.tbd；libstdc++.6.0.9.tbd下载地址密码：yc0m 进入到上述目录下，把libstdc++.6.0.9.tbd复制进去；恭喜你，编译成功]]></content>
+    <content type="text"><![CDATA[Xcode 10 Error 重复的info.plist文件删除掉多余的info.plist文件,重新编译即可(我是手动添加了Masonry的库,其中Masonry库中带有info.plist文件–删除) Multiple commands produce修改Xcode编译配置Xcode-&gt;File-&gt;Project Settings/Workspace Setting-&gt; Build System -&gt; Legacy Build System. Copy Pods Resources失效需要升级CocoaPods版本&gt;=1.4.0以上, 可见Github上的一个issues Xcode10 beta can’t load bundles from CocoaPods #解决ibrary not found for -lstdc++.6.0.9 真机：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 模拟器：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/ 首先打开链接下载libstdc++.6.0.9.tbd；libstdc++.6.0.9.tbd下载地址密码：yc0m 进入到上述目录下，把libstdc++.6.0.9.tbd复制进去；]]></content>
       <categories>
         <category>learn</category>
       </categories>
