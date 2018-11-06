@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS腾讯Bugly使用]]></title>
+    <url>%2F2018%2F11%2F06%2FiOS%E8%85%BE%E8%AE%AFBugly%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[#iOS腾讯Bugly使用 Bugly 创建 首先进入Bugly官网：Bugly官网,点击立即接入，用qq登陆后点击我的产品，新建一个产品，然后填写产品信息，保存 然后将Bugly集成到项目中，这里我用的是cocoapods 集成的Bugly pod &apos;Bugly&apos; 然后在工程中初始化Bugly，一句代码搞定APPID是必填的，在我的产品中点击设置获取 配置完成之后运行出现bug后就可以捕获异常了，在崩溃分析中查看，但是我们只看到了在哪个方法里里报错，并不知道崩溃具体在哪一行，所以我们还要配置符号表 关于符号表官网有详细介绍如何使用： 符号表 上传符号表：两种方式，分别是自动跟手动自动配置: 不需要java运行环境，在脚本里面填写相关信息， 直接在Xcode编译执行脚本即可，官网上有写，非常方便简单，但在编译的时候比较慢重点讲下手动配置： 官方的符号表工具iOS文档版­使用指南不是很通俗易懂，下面我再写一个更直观的教程，方便大家阅读。 配置环境 点击Java运行环境下载(JRE或JDK版本需要&gt;=1.6，我下的是9.0.4) 。 安装过后,查看是否安装成功，打开终端,在终端输入java -version 获取dSYM文件 dSYM文件是指具有调试信息的目标文件,在Products里面右击 Show in Finder 如图所示，如果编译后没有dSYM文件说明是Dug编译的，如果要在Debug环境也能成dSYM文件，所以要做如下设置: 实际项目中我没有设置，因为我是通过打包后获取的dSYM文件 生成符号表文件 3.1下载最新版Bugly iOS符号表工具 选一个位置创建一个文件夹，将”buglySymboliOS.jar”放入文件夹里面 ，我自己是在桌面创建了”testBugly”,然后将”buglySymboliOS.jar”放入进去了 最后使用JAR包跟dSYM在终端生成符号表文件 在终端执行以下命令:java -jar jar包路径 -i dSYM文件路径 上传符号表到到我产品。如图: 之前用自动符号表生成了一些，所以符号表文件有点多。 最后就可以在项目中愉快的看到bug出现在哪个类哪一行代码上了]]></content>
+      <categories>
+        <category>learn</category>
+      </categories>
+      <tags>
+        <tag>Bugly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Xcode10升级后的问题]]></title>
     <url>%2F2018%2F11%2F05%2FXcode10%E5%8D%87%E7%BA%A7%E5%90%8E%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[Xcode 10 Error 重复的info.plist文件删除掉多余的info.plist文件,重新编译即可(我是手动添加了Masonry的库,其中Masonry库中带有info.plist文件–删除) Multiple commands produce修改Xcode编译配置Xcode-&gt;File-&gt;Project Settings/Workspace Setting-&gt; Build System -&gt; Legacy Build System. Copy Pods Resources失效需要升级CocoaPods版本&gt;=1.4.0以上, 可见Github上的一个issues Xcode10 beta can’t load bundles from CocoaPods #解决ibrary not found for -lstdc++.6.0.9 真机：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 模拟器：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/ 首先打开链接下载libstdc++.6.0.9.tbd；libstdc++.6.0.9.tbd下载地址密码：yc0m 进入到上述目录下，把libstdc++.6.0.9.tbd复制进去；]]></content>
