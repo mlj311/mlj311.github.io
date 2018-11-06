@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/钢铁侠 32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/钢铁侠 16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/ironman.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ARC," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ARC">
+<meta name="keywords" content="ARC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS之ARC">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/iOS之ARC/index.html">
+<meta property="og:site_name" content="Listen to me">
+<meta property="og:description" content="ARC">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-06T10:02:08.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS之ARC">
+<meta name="twitter:description" content="ARC">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/06/iOS之ARC/"/>
+
+
+
+
+
+  <title>iOS之ARC | Listen to me</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Listen to me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">MLJ-Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/iOS之ARC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maolujun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Listen to me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS之ARC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-06T17:32:38+08:00">
+                2018-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learn/" itemprop="url" rel="index">
+                    <span itemprop="name">learn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/06/iOS之ARC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/06/iOS之ARC/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ARC</p>
+<a id="more"></a>
+<!--点击显示更多-->
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>ARC（自动引用计数）是iOS5、macOS10.7引入的内存管理技术，为了循序渐进的方式了解这项技术，本书先从ARC无效的环境说起，也就是常指的MRC（手动引用计数）环境。</p>
+<p>内存管理的思考方式</p>
+<ul>
+<li>自己生成的对象，自己所持有。</li>
+<li>非自己生成的对象，自己也能持有。</li>
+<li>不再需要自己持有的对象时释放。</li>
+<li>非自己持有的对象无法释放。</li>
+</ul>
+<p>这里的“自己”理解为编程人员自身。与“生成”、“持有”、“释放”操作并列的还有“废弃”，分别对应以下方法：</p>
+<table><br><br><tr><br><td>对象操作</td><br><td>Objective-C方法</td><br></tr><br><br><tr><br><td>生成并持有对象</td><br><td>alloc/new/copy/mutableCopy等方法</td><br></tr><br><br><tr><br><td>持有对象</td><br><td>retain方法</td><br></tr><br><br><tr><br><td>释放对象</td><br><td>release方法</td><br></tr><br><br><tr><br><td>废弃对象</td><br><td>dealloc方法</td><br></tr><br></table>
+
+<ul>
+<li>注意：以上方法包含在Cocoa框架中而非Objective-C语言中。</li>
+</ul>
+<h3 id="自己生成的对象，自己所持有"><a href="#自己生成的对象，自己所持有" class="headerlink" title="自己生成的对象，自己所持有"></a>自己生成的对象，自己所持有</h3><p>以下面名称开头的方法生成的对象为自己持有：</p>
+<ul>
+<li>alloc</li>
+<li>new</li>
+<li>copy</li>
+<li>mutableCopy</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id obj1 = [[NSObject alloc] init];// 自己生成并持有</span><br><span class="line">id obj2 = [NSObject new];// 自己生成并持有</span><br></pre></td></tr></table></figure>
+<p>另外，根据以上原则，下列方法也意味着自己生成并持有对象：</p>
+<ul>
+<li>allocMyObject</li>
+<li>newThatObject</li>
+<li>copyThis</li>
+<li>mutableCopyYourObject</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">id obj = [MyObject allocMyObject];</span><br><span class="line"> </span><br><span class="line">// 内部实现</span><br><span class="line">+ (MyObject *)allocMyObject &#123;</span><br><span class="line">    MyObject *obj = [[MyObject alloc] init];</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="非自己生成的对象，自己也能持有"></a>非自己生成的对象，自己也能持有</h3><p>alloc/new/copy/mutableCopy以外方法取得对象，非自己生成，自己不持有对象。可以通过retain方法为自己所持有。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id obj = [NSMutableArray array];// 取得对象，但自己不持有</span><br><span class="line">[obj retain];// 自己持有对象</span><br></pre></td></tr></table></figure>
+<p>不再需要自己持有的对象时释放</p>
+<p>自己持有的对象不再需要时，持有者有义务将其释放。释放使用release方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id obj = [[NSObject alloc] init];// 自己生成并持有对象</span><br><span class="line">[obj release];// 释放对象</span><br></pre></td></tr></table></figure>
+<p>用retain方法持有对象，一旦不再需要，务必要用release方法释放。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id obj = [NSMutableArray array];// 取得对象，但自己不持有</span><br><span class="line">[obj retain];// 持有非自己生成对象</span><br><span class="line">[obj release];// 释放对象</span><br></pre></td></tr></table></figure>
+<p>类似[NSMutableArray array]方法取得的对象存在，但自己不持有对象，内部如何实现？以object这个方法名为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (id)object &#123;</span><br><span class="line">    id obj = [[NSObject alloc] init];// 自己持有</span><br><span class="line">    [obj autorelease];// 适当时机自动释放</span><br><span class="line">    return obj;// 取得对象存在，但自己不持有</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>autorelease提供这样的功能，使对象在超出指定的生存范围时能够自动并正确地释放。</p>
+<p>使用NSMutableArray类的array类方法等可以取得谁都不持有的对象，这些方法是通过autorelease实现的。</p>
+<h3 id="非自己持有的对象无法释放"><a href="#非自己持有的对象无法释放" class="headerlink" title="非自己持有的对象无法释放"></a>非自己持有的对象无法释放</h3><p>用alloc/new/copy/mutableCopy方法生成并持有的对象，或用retain方法持有的对象，在不需要时要将其释放。倘若在应用程序中释放了非自己持有的对象会造成崩溃。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id obj = [[NSObject alloc] init];// 自己生成并持有对象</span><br><span class="line">[obj release];// 释放对象</span><br><span class="line">[obj release];// 重复释放对象，崩溃</span><br><span class="line"></span><br><span class="line">id obj1 = [obj0 object];// 取得对象，但自己不持有</span><br><span class="line">[obj1 release];// 释放非自己持有的对象，崩溃</span><br></pre></td></tr></table></figure>
+<p>alloc/retain/release/dealloc及其实现</p>
+<p>Cocoa是macOS的系统框架，在iOS上被称为Cocoa Touch。Cocoa框架虽然没有公开，但是可以通过Cocoa框架的互换框架GNUstep来推测苹果的实现。</p>
+<p>alloc调用allocWithZone，那么这里的参数类型NSZone是什么？</p>
+<pre><code>它是为了防止内存碎片化而引入的结构。对内存分配的区域本身进行多重化的管理，根据使用对象的目的、对象的大小分配内存，从而提高内存管理的效率。
+
+现在运行时系统中的内存管理已经极具效率，使用区域来管理内存反而会引起内存使用效率低下以及源代码复杂等问题。
+</code></pre><h3 id="GNUstep的实现"><a href="#GNUstep的实现" class="headerlink" title="GNUstep的实现"></a>GNUstep的实现</h3><p>GNUstep源码里alloc类方法用obj_layout结构体中的整数变量retained来保存引用计数retainCount，并将其写入对象内存头部。</p>
+<p>执行alloc后对象的实例方法retainCount获得数值是1，retain使变量retained值+1，release使变量retained值-1。release使tetained变量大于0时-1，等于0时调用dealloc实例方法，废弃对象。</p>
+<p>具体总结如下：</p>
+<ul>
+<li>在Objective-C的对象中存有引用计数这一整数值。</li>
+<li>调用alloc或是retain方法后，引用计数值+1。</li>
+<li>调用release后，引用计数值-1。</li>
+<li>引用计数值为0时，调用dealloc方法废弃对象。</li>
+</ul>
+<h4 id="苹果的实现"><a href="#苹果的实现" class="headerlink" title="苹果的实现"></a>苹果的实现</h4><p>alloc过程设置断点追踪调用的方法和函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+alloc</span><br><span class="line">+allocWithZone:</span><br><span class="line">class_createInstance</span><br><span class="line">calloc//分配内存块</span><br></pre></td></tr></table></figure>
+<p>苹果对alloc的实现与GNUstep并无多大差异。</p>
+<p>retainCount/retain/release调用的方法和函数分别如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-retainCount</span><br><span class="line">__CFDoExternRefOperation</span><br><span class="line">CFBasicHashGetCountOfKey</span><br><span class="line"></span><br><span class="line">-retain</span><br><span class="line">__CFDoExternRefOperation</span><br><span class="line">CFBasicHashAddValue</span><br><span class="line"></span><br><span class="line">-release</span><br><span class="line">__CFDoExternRefOperation</span><br><span class="line">CFBasicHashRemoveValue</span><br></pre></td></tr></table></figure>
+<p>（CEBasicHashRemoveValue返回0时，-release 调用dealloc）</p>
+<p>可以从__CFDoExternRefOperation函数以及一些CFBasicHash开头的函数名看出，苹果的实现大概就是采用散列表（又称哈希表）来管理引用计数。</p>
+<p>在引用计数表中，key为内存块地址，value为对应的引用计数，苹果这样实现的优势在于：</p>
+<ul>
+<li>为对象分配内存块时无需考虑内存块头部。</li>
+<li>对象占用内存块损坏时，可以根据引用计数表来确认内存块的位置。</li>
+<li>检测内存泄露时，根据引用计数表中的记录检查对象的持有者是否存在。</li>
+</ul>
+<h3 id="autorelease及其实现"><a href="#autorelease及其实现" class="headerlink" title="autorelease及其实现"></a>autorelease及其实现</h3><p>autorelease会像C语言的自动变量那样对待对象实例。当超出其作用域时，对象实例的release实例方法被调用。</p>
+<p>autorelease具体使用方法如下:</p>
+<ul>
+<li>1.生成并持有NSAutoreleasePool对象；</li>
+<li>2.调用已分配对象的autorelease实例方法；</li>
+<li>3.废弃NSAutoreleasePool对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];</span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line">[obj release];</span><br><span class="line">[pool drain];</span><br></pre></td></tr></table></figure>
+<p>Cocoa框架中程序主循环的NSRunLoop对NSAutoreleasePool对象进行生成、持有和废弃处理。在大量产生autorelease对象时，若不废弃NSAutoreleasePool对象，那么生成的对象就不能被废弃，会产生内存不足现象。</p>
+<h3 id="GNUstep的实现-1"><a href="#GNUstep的实现-1" class="headerlink" title="GNUstep的实现"></a>GNUstep的实现</h3><p>autorelease实例方法的本质就是调用NSAutoreleasePool对象的addObject类方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[obj autorelease];</span><br></pre></td></tr></table></figure>
+<p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (id)autorelease &#123;</span><br><span class="line">    [NSAutoreleasePool addObject:self];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GNUstep在实现NSAutoreleasePool时使用连接列表，可以理解为数组。若调用NSObject类的autorelease方法，该对象就会被追加到正在使用的NSAutoreleasePool对象的数组中。drain实例方法废弃正在使用的NSAutoreleasePool对象，会对数组中的所有对象调用release方法。</p>
+<h4 id="苹果的实现-1"><a href="#苹果的实现-1" class="headerlink" title="苹果的实现"></a>苹果的实现</h4><p>autoreleasepool以数组的形式实现，主要通过以下3个函数：</p>
+<ul>
+<li>obj_autoreleasePoolPush()</li>
+<li>obj_autorelease(obj)</li>
+<li>obj_autoreleasePoolPop(pool)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];</span><br><span class="line">/* 等同于objc_autoreleasePoolPush */</span><br><span class="line"> </span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line"> </span><br><span class="line">[obj autorelease];</span><br><span class="line">/* 等同于 objc_autorelease(obj) */</span><br><span class="line"> </span><br><span class="line">[pool drain];</span><br><span class="line">/* 等同于 objc_autoreleasePoolPop(pool) */</span><br></pre></td></tr></table></figure>
+<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><h4 id="ARC概述"><a href="#ARC概述" class="headerlink" title="ARC概述"></a>ARC概述</h4><p>ARC（Auto Reference Counting）是iOS5、macOS10.7（OS X Lion）引入的内存管理技术。</p>
+<pre><code>ARC的出现解决了原来需要手动键入retain或release操作的问题。这在降低程序崩溃、内存风险的同时，很大程度上减少了开发程序的工作量。
+</code></pre><p>内存管理的思考方式</p>
+<pre><code>“引用计数式内存管理”的本质在ARC中并没有改变，ARC只是自动地帮我们处理“引用计数”的相关部分。
+</code></pre><p>所有权修饰符</p>
+<p>ARC环境下其类型必须附加所有权修饰符（有省略的情况），所有权修饰符有以下4种：</p>
+<ul>
+<li>__strong</li>
+<li>__weak</li>
+<li>__unsafe_unretained</li>
+<li>__autorelease</li>
+</ul>
+<p>书中此处提到id类型做一下记录：</p>
+<pre><code>Objective-C中为了处理对象，可将变量定义为id类型，id类型用于隐藏对象类型的类名部分，相当于C语言中常用到的void *。
+</code></pre><h5 id="strong修饰符"><a href="#strong修饰符" class="headerlink" title="__strong修饰符"></a>__strong修饰符</h5><p>id和对象类型默认使用__strong修饰，由于是默认情况，可省略不写。</p>
+<p>__strong表示对对象的强引用。持有强引用的变量在超出其作用域时被废弃。</p>
+<p><strong>strong同</strong>weak、__autoreleasing一样，可以保证被修饰的变量在初始化时为nil。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line"> </span><br><span class="line">//等同于</span><br><span class="line">//id __strong obj = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
+<h5 id="weak修饰符"><a href="#weak修饰符" class="headerlink" title="__weak修饰符"></a>__weak修饰符</h5><pre><code>循环引用容易引起内存泄漏。所谓内存泄漏就是应当废弃的对象在超出其生存周期后继续存在。使用__weak修饰符可以避免循环引用。
+</code></pre><p>__weak表示弱引用，弱引用不能持有对象实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id __weak obj = [[NSObject alloc] init];//编译器会警告</span><br></pre></td></tr></table></figure>
+<pre><code>__weak修饰符还有另一个优点。在持有对象的弱引用时，若对象被废弃，则此弱引用将失效且处于nil被赋值的状态。
+</code></pre><p>通过检查__weak修饰的变量是否为nil可以判断被赋值的对象是否已废弃。</p>
+<p><strong>weak只能用于iOS5和macOS10.7以上版本，在iOS4和macOS10.6及以前用</strong>unsafe_unretained代替。</p>
+<h5 id="autoreleasing修饰符"><a href="#autoreleasing修饰符" class="headerlink" title="__autoreleasing修饰符"></a>__autoreleasing修饰符</h5><p>ARC下指定@autoreleasepool块来替代NSAutoreleasePool类生成、持有及废弃这一范围。_autoreleasing修饰变量等价于对象调用autorelease方法，即可将对象注册到autoreleasepool中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">    id __autoreleasing obj = [[NSObject alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>提问：前文提到__weak修饰的变量必须注册到autoreleasepool中，为什么？
+
+答：因为__weak修饰的变量只能持有对象的弱引用，在访问对象的过程中，该对象可能被废弃。如果把要访问的对象注册到autoreleasepool中，那么在@autoreleasepool块结束之前能确保该对象存在。
+</code></pre><p>_autoreleasing同__strong一样，显式使用罕见。</p>
+<h5 id="ARC的规则"><a href="#ARC的规则" class="headerlink" title="ARC的规则"></a>ARC的规则</h5><p>ARC环境下编译源代码遵循一定规则：</p>
+<ul>
+<li>不能使用retain/release/retainCount/autorelease</li>
+<li>不能使用NSAllocateObject/NSDeallocateObject</li>
+</ul>
+<p>ARC有效时，以上方法会导致编译器报错。</p>
+<ul>
+<li>必须遵守内存管理的方法命名规则</li>
+</ul>
+<p>对象的生成、持有的方法必须遵循命名规则：alloc/new/copy/mutableCopy。以init开头的方法更严格：必须是实例方法且必须返回对象，返回对象的类型必须是id类型或该方法声明类的对象类型。</p>
+<ul>
+<li>不要显式调用dealloc</li>
+</ul>
+<p>dealloc方法无需显式调用，但C语言库需要在dealloc中free，以及删除已注册的通知观察者。</p>
+<ul>
+<li>使用@autorelease块代替NSAutoreleasePool</li>
+</ul>
+<p>ARC有效时，使用@autoreleasepool块代替NSAutoreleasePool。</p>
+<ul>
+<li>不能使用区域（NSZone）</li>
+</ul>
+<p>不管ARC是否有效，区域在现在运行时系统中已单纯地被忽略。</p>
+<ul>
+<li>C语言的规约上没有方法来管理结构体成员变量的生存周期。</li>
+</ul>
+<p>对象型变量不能作为C语言结构体（struct/union）的成员</p>
+<ul>
+<li>显式转换“id”和“void *”</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/* ARC无效 */</span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line">void *p = obj</span><br></pre></td></tr></table></figure>
+<p>ARC有效时需要通过__bridge来显式转换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* ARC有效 */</span><br><span class="line">id obj = [[NSObject alloc] init];</span><br><span class="line">void *p = (__bridge void*)obj;</span><br><span class="line">id o = (__bridge id)p;</span><br></pre></td></tr></table></figure>
+<h5 id="属性和数组"><a href="#属性和数组" class="headerlink" title="属性和数组"></a>属性和数组</h5><ul>
+<li>声明属性所用的关键词与所有权修饰符的对应关系：</li>
+</ul>
+<table><br><br><tr><br><td>声明属性的关键词</td><br><td>所有权修饰符</td><br></tr><br><br><tr><br><td> assign </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> copy </td><br><td> strong </td><br></tr><br><br><tr><br><td> retain </td><br><td> <strong>strong </strong></td><br></tr><br><br><tr><br><td> strong </td><br><td> strong </td><br></tr><br><br><tr><br><td> unsafe_unretained </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> weak </td><br><td> weak </td><br></tr><br></table>
+
+<ul>
+<li>动态数组中操作__strong修饰的变量与静态数组有很大差异，需要自己释放所有元素。静态数组中，编译器能够根据变量的作用域自动插入释放赋值对象的代码，而在动态数组中，编译器不能确定数组的生存周期，所以无从处理。</li>
+</ul>
+<h5 id="ARC的实现"><a href="#ARC的实现" class="headerlink" title="ARC的实现"></a>ARC的实现</h5><p>__strong的实现</p>
+<ul>
+<li>自己生成并持有</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    id __strong obj = [[NSObject alloc] init];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 编译器的模拟代码 */</span><br><span class="line">id obj = objc_msgSend(NSObject, @selector(alloc));</span><br><span class="line">objc_msgSend(obj, @selector(init));</span><br><span class="line">objc_release(obj);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>非自己生成持有</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id __strong obj = [NSMutableArray array];</span><br><span class="line"></span><br><span class="line">/* 编译器的模拟代码 */</span><br><span class="line">id obj = objc_msgSend(NSMutableArray, @selector(array));</span><br><span class="line">objc_retainAutoreleasedReturnValue(obj);</span><br><span class="line">objc_release(obj);</span><br></pre></td></tr></table></figure>
+<pre><code>objc_retainAutoreleasedReturnValue函数用于持有对象，注册到autoreleasepool中并返回。与之对应的函数是objc_autoreleaseReturnValue。    
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+ (id)array &#123;</span><br><span class="line">    return [[NSMutableArray alloc] init];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 编译器的模拟代码 */</span><br><span class="line">+ (id)array &#123;</span><br><span class="line">    id obj = objc_msgSend(NSMutableArray, @selector(alloc));</span><br><span class="line">    objc_msgSend(obj, @selector(init));</span><br><span class="line">    return objc_autoreleaseReturnValue(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>通过objc_retainAutoreleasedReturnValue函数和objc_autoreleaseReturnValue函数的协作，可以不将对象注册到autoreleasepool中而直接传递，以达到最优化程序运行。
+</code></pre><p>__weak的实现</p>
+<pre><code>使用__weak修饰的变量，就是使用注册到autoreleasepool中的对象。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    id __weak obj1 = obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 编译器模拟代码 */</span><br><span class="line">id obj1;</span><br><span class="line">objc_initWeak(&amp;obj1, obj);</span><br><span class="line">id tmp = objc_loadWeakRetained(&amp;obj1);</span><br><span class="line">objc_autorelease(tmp);</span><br><span class="line">objc_destroyWeak(obj1);</span><br></pre></td></tr></table></figure>
+<p>__weak同引用计数一样通过散列表（哈希表）实现，大致流程如下：</p>
+<ul>
+<li>1.objc_initWeak(&amp;obj1, obj)函数初始化__weak修饰的变量，通过执行objc_storeWeak(&amp;obj1, obj)函数，以第一个参数（变量的地址）作为key，把第二个参数（赋值对象）作为value存入哈希表。</li>
+<li>2.由于弱引用不能持有对象，函数objc_loadWeakRetained(&amp;obj1)取出所引用的对象并retain。</li>
+<li>3.objc_autorelease(tmp)函数将对象注册到autoreleasepool中。</li>
+<li><p>4.objc_destroyWeak(&amp;obj1)函数释放<strong>weak修饰的变量，通过过程执行objc_store(&amp;obj1, 0)函数，在weak表中查到变量地址并删除。废弃对象调用objc_clear_deallocating函数，这个过程会将weak表记录中</strong>weak修饰的变量地址赋值为nil。</p>
+<p>  如果大量使用<strong>weak修饰的变量，则会消耗相应的CPU资源。良策是只在需要避免循环引用时使用</strong>weak修饰符。</p>
+</li>
+</ul>
+<p>__autoreleasing的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">    id __autoreleasing obj = [[NSObject alloc] init];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 编译器的模拟代码 */</span><br><span class="line">id pool = objc_autoreleasePoolPush();</span><br><span class="line">id obj = objc_msgSend(NSObject, @selector(alloc));</span><br><span class="line">objc_msgSend(obj, @selector(init));</span><br><span class="line">objc_autorelese(obj);</span><br><span class="line">objc_autoreleasePoolPop();</span><br></pre></td></tr></table></figure>
+<p>以上为ARC篇的学习内容。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARC/" rel="tag"># ARC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/06/iOS之内存管理/" rel="next" title="iOS之内存管理">
+                <i class="fa fa-chevron-left"></i> iOS之内存管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a45fbb5703d71a6" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">maolujun</p>
+              <p class="site-description motion-element" itemprop="description">One is never too old to learn</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理"><span class="nav-number">1.</span> <span class="nav-text">内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己生成的对象，自己所持有"><span class="nav-number">1.1.</span> <span class="nav-text">自己生成的对象，自己所持有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非自己生成的对象，自己也能持有"><span class="nav-number">1.2.</span> <span class="nav-text">非自己生成的对象，自己也能持有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非自己持有的对象无法释放"><span class="nav-number">1.3.</span> <span class="nav-text">非自己持有的对象无法释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNUstep的实现"><span class="nav-number">1.4.</span> <span class="nav-text">GNUstep的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#苹果的实现"><span class="nav-number">1.4.1.</span> <span class="nav-text">苹果的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autorelease及其实现"><span class="nav-number">1.5.</span> <span class="nav-text">autorelease及其实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNUstep的实现-1"><span class="nav-number">1.6.</span> <span class="nav-text">GNUstep的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#苹果的实现-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">苹果的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC"><span class="nav-number">1.7.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC概述"><span class="nav-number">1.7.1.</span> <span class="nav-text">ARC概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#strong修饰符"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">__strong修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#weak修饰符"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">__weak修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#autoreleasing修饰符"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">__autoreleasing修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ARC的规则"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">ARC的规则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性和数组"><span class="nav-number">1.7.1.5.</span> <span class="nav-text">属性和数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ARC的实现"><span class="nav-number">1.7.1.6.</span> <span class="nav-text">ARC的实现</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">maolujun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://MaoLuJun.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/11/06/iOS之ARC/';
+          this.page.identifier = '2018/11/06/iOS之ARC/';
+          this.page.title = 'iOS之ARC';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MaoLuJun.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
