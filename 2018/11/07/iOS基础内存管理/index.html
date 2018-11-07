@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="内存管理之基础篇  前言现在iOS开发已经是ARC甚至是swift的时代了，但是内存管理仍然是一个需要重点关注的问题。 内存管理是序设计中很重要的一部分，程序在运行的过程中消耗内存，运行结束后释放占用的内存。如果程序运行时一直分配内存而不及时释放无用的内存，会造成这样的后果：程序占用的内存越来越大，直至内存消耗殚尽，程序因无内存可用导致崩溃，这样的情况我们称之为内存泄漏。 ObjC的内存管理比较简">
+<meta name="description" content="内存管理之基础篇">
 <meta name="keywords" content="内存管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS基础内存管理">
 <meta property="og:url" content="http://yoursite.com/2018/11/07/iOS基础内存管理/index.html">
 <meta property="og:site_name" content="Listen to me">
-<meta property="og:description" content="内存管理之基础篇  前言现在iOS开发已经是ARC甚至是swift的时代了，但是内存管理仍然是一个需要重点关注的问题。 内存管理是序设计中很重要的一部分，程序在运行的过程中消耗内存，运行结束后释放占用的内存。如果程序运行时一直分配内存而不及时释放无用的内存，会造成这样的后果：程序占用的内存越来越大，直至内存消耗殚尽，程序因无内存可用导致崩溃，这样的情况我们称之为内存泄漏。 ObjC的内存管理比较简">
+<meta property="og:description" content="内存管理之基础篇">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-07T07:41:28.692Z">
+<meta property="og:updated_time" content="2018-11-07T08:53:17.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基础内存管理">
-<meta name="twitter:description" content="内存管理之基础篇  前言现在iOS开发已经是ARC甚至是swift的时代了，但是内存管理仍然是一个需要重点关注的问题。 内存管理是序设计中很重要的一部分，程序在运行的过程中消耗内存，运行结束后释放占用的内存。如果程序运行时一直分配内存而不及时释放无用的内存，会造成这样的后果：程序占用的内存越来越大，直至内存消耗殚尽，程序因无内存可用导致崩溃，这样的情况我们称之为内存泄漏。 ObjC的内存管理比较简">
+<meta name="twitter:description" content="内存管理之基础篇">
 
 
 
@@ -383,6 +383,7 @@
 
       
         <p>内存管理之基础篇</p>
+<a id="more"></a>
 <!-- 点击显示更多-->
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在iOS开发已经是ARC甚至是swift的时代了，但是内存管理仍然是一个需要重点关注的问题。</p>
 <p>内存管理是序设计中很重要的一部分，程序在运行的过程中消耗内存，运行结束后释放占用的内存。如果程序运行时一直分配内存而不及时释放无用的内存，会造成这样的后果：程序占用的内存越来越大，直至内存消耗殚尽，程序因无内存可用导致崩溃，这样的情况我们称之为内存泄漏。</p>
