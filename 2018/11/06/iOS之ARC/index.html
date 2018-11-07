@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="ARC">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T10:02:08.437Z">
+<meta property="og:updated_time" content="2018-11-07T02:27:44.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS之ARC">
 <meta name="twitter:description" content="ARC">
@@ -394,7 +394,7 @@
 <li>非自己持有的对象无法释放。</li>
 </ul>
 <p>这里的“自己”理解为编程人员自身。与“生成”、“持有”、“释放”操作并列的还有“废弃”，分别对应以下方法：</p>
-<table><br><br><tr><br><td>对象操作</td><br><td>Objective-C方法</td><br></tr><br><br><tr><br><td>生成并持有对象</td><br><td>alloc/new/copy/mutableCopy等方法</td><br></tr><br><br><tr><br><td>持有对象</td><br><td>retain方法</td><br></tr><br><br><tr><br><td>释放对象</td><br><td>release方法</td><br></tr><br><br><tr><br><td>废弃对象</td><br><td>dealloc方法</td><br></tr><br></table>
+<table><br><tr><br><td>对象操作</td><br><td>Objective-C方法</td><br></tr><br><br><tr><br><td>生成并持有对象</td><br><td>alloc/new/copy/mutableCopy等方法</td><br></tr><br><br><tr><br><td>持有对象</td><br><td>retain方法</td><br></tr><br><br><tr><br><td>释放对象</td><br><td>release方法</td><br></tr><br><br><tr><br><td>废弃对象</td><br><td>dealloc方法</td><br></tr><br></table>
 
 <ul>
 <li>注意：以上方法包含在Cocoa框架中而非Objective-C语言中。</li>
@@ -542,7 +542,7 @@
 <h5 id="属性和数组"><a href="#属性和数组" class="headerlink" title="属性和数组"></a>属性和数组</h5><ul>
 <li>声明属性所用的关键词与所有权修饰符的对应关系：</li>
 </ul>
-<table><br><br><tr><br><td>声明属性的关键词</td><br><td>所有权修饰符</td><br></tr><br><br><tr><br><td> assign </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> copy </td><br><td> strong </td><br></tr><br><br><tr><br><td> retain </td><br><td> <strong>strong </strong></td><br></tr><br><br><tr><br><td> strong </td><br><td> strong </td><br></tr><br><br><tr><br><td> unsafe_unretained </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> weak </td><br><td> weak </td><br></tr><br></table>
+<table><br><tr><br><td>声明属性的关键词</td><br><td>所有权修饰符</td><br></tr><br><br><tr><br><td> assign </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> copy </td><br><td> strong </td><br></tr><br><br><tr><br><td> retain </td><br><td> <strong>strong </strong></td><br></tr><br><br><tr><br><td> strong </td><br><td> strong </td><br></tr><br><br><tr><br><td> unsafe_unretained </td><br><td> <strong>unsafe_unretained </strong></td><br></tr><br><br><tr><br><td> weak </td><br><td> weak </td><br></tr><br></table>
 
 <ul>
 <li>动态数组中操作__strong修饰的变量与静态数组有很大差异，需要自己释放所有元素。静态数组中，编译器能够根据变量的作用域自动插入释放赋值对象的代码，而在动态数组中，编译器不能确定数组的生存周期，所以无从处理。</li>
