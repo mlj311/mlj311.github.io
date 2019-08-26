@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="2019亲身面试所得">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T08:43:37.305Z">
+<meta property="og:updated_time" content="2019-08-26T08:07:31.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019亲身面试所得">
 <meta name="twitter:description" content="2019亲身面试所得">
@@ -506,6 +506,118 @@
 <li>http的连接很简单,是无状态的。</li>
 <li>HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全。</li>
 </ol>
+<h1 id="8-22"><a href="#8-22" class="headerlink" title="8.22"></a>8.22</h1><h2 id="ios-线程间通信"><a href="#ios-线程间通信" class="headerlink" title="ios 线程间通信"></a>ios 线程间通信</h2><ul>
+<li>什么叫做线程间通信  <ul>
+<li>在1个进程中，线程往往不是孤立存在的，多个线程之间需要经常进行通信  </li>
+</ul>
+</li>
+<li>线程间通信的体现  <ul>
+<li>1个线程传递数据给另1个线程，1个线程传递数据给另1个线程  </li>
+</ul>
+</li>
+<li>线程间通信常用方法  <ul>
+<li>-(void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;</li>
+<li>-void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait;  </li>
+</ul>
+</li>
+</ul>
+<h2 id="iOS-中几种常用的锁总结"><a href="#iOS-中几种常用的锁总结" class="headerlink" title="iOS 中几种常用的锁总结"></a>iOS 中几种常用的锁总结</h2><p>多线程编程中，应该尽量<strong>避免资源在线程之间共享，以减少线程间的相互作用</strong>。 但是总是有多个线程相互干扰的情况（如多个线程访问一个资源）。在线程必须交互的情况下，就需要一些同步工具，来确保当它们交互的时候是安全的。  </p>
+<p>锁是线程编程同步工具的基础。iOS开发中常用的锁有如下几种：  </p>
+<ol>
+<li>@synchronized  </li>
+<li>NSLock 对象锁  </li>
+<li>NSRecursiveLock 递归锁  </li>
+<li>NSConditionLock 条件锁  </li>
+<li>pthread_mutex 互斥锁（C语言）  </li>
+<li>dispatch_semaphore 信号量实现加锁（GCD）  </li>
+<li>OSSpinLock （暂不建议使用，原因参见这里）</li>
+</ol>
+<ul>
+<li><p>@synchronized 关键字加锁 互斥锁，性能较差不推荐使用<br>`@synchronized(这里添加一个OC对象，一般使用self) {</p>
+<pre><code>这里写要加锁的代码
+</code></pre><p>}`<br>注意点:</p>
+<ul>
+<li>加锁的代码尽量少  </li>
+<li>添加的OC对象必须在多个线程中都是同一对象  </li>
+<li>优点是不需要显式的创建锁对象，便可以实现锁的机制。  </li>
+<li>@synchronized块会隐式的添加一个异常处理例程来保护代码，该处理例程会在异常抛出的时候自动的释放互斥锁。所以如果不想让隐式的异常处理例程带来额外的开销，你可以考虑使用锁对象。  </li>
+</ul>
+</li>
+<li><p>NSLock 互斥锁 不能多次调用 lock方法,会造成死锁<br>在Cocoa程序中NSLock中实现了一个简单的互斥锁。</p>
+<p>所有锁（包括NSLock）的接口实际上都是通过NSLocking协议定义的，它定义了lock和unlock方法。你使用这些方法来获取和释放该锁。</p>
+<p>NSLock类还增加了tryLock和lockBeforeDate:方法。 </p>
+<p>tryLock试图获取一个锁，但是如果锁不可用的时候，它不会阻塞线程，相反，它只是返回NO。</p>
+<p>lockBefore lockBeforeDate:方法试图获取一个锁，但是如果锁没有在规定的时间内被获得，它会让线程从阻塞状态变为非阻塞状态（或者返回NO）。</p>
+</li>
+<li><p>NSRecursiveLock 递归锁  </p>
+<p>使用锁最容易犯的一个错误就是在递归或循环中造成死锁。  </p>
+<p>NSRecursiveLock类定义的锁可以在同一线程多次lock，而不会造成死锁。  </p>
+<p>递归锁会跟踪它被多少次lock。每次成功的lock都必须平衡调用unlock操作。  </p>
+<p>只有所有的锁住和解锁操作都平衡的时候，锁才真正被释放给其他线程获得。</p>
+</li>
+<li><p>NSConditionLock 条件锁   </p>
+<p>  在线程1中的加锁使用了lock，是不需要条件的，所以顺利的就锁住了。  </p>
+<p>  unlockWithCondition:在开锁的同时设置了一个整型的条件 2 。  </p>
+<p>  线程2则需要一把被标识为2的钥匙，所以当线程1循环到 i = 2 时，线程2的任务才执行。   </p>
+<p>  NSConditionLock也跟其它的锁一样，是需要lock与unlock对应的，只是lock,lockWhenCondition:与unlock，unlockWithCondition:是可以随意组合的，当然这是与你的需求相关的。</p>
+</li>
+<li><p>pthread_mutex 互斥锁</p>
+</li>
+<li><p>dispatch_semaphore 信号量实现加锁</p>
+<p>  GCD中也已经提供了一种信号机制，使用它我们也可以来构建一把”锁”。</p>
+</li>
+<li><p>OSSpinLock</p>
+<p>  OSSpinLock 显示的效率最高（暂不建议使用）</p>
+</li>
+</ul>
+<h2 id="SVN与Git的区别"><a href="#SVN与Git的区别" class="headerlink" title="SVN与Git的区别"></a>SVN与Git的区别</h2><ul>
+<li>最核心的区别Git是分布式的，而Svn不是分布的。Git更倾向于分布式开发，因为每一个开发人员的电脑上都有一个Local Repository,所以即使没有网络也一样可以Commit，查看历史版本记录，创建项目分支等操作，等网络再次连接上Push到Server端。</li>
+<li>Git把内容按元数据方式存储，而SVN是按文件：因为,.git目录是处于你的机器上的一个克隆版的版本库，它拥有中心版本库上所有的东西，例如标签，分支，版本记录等。.git目录的体积大小跟.svn比较，你会发现它们差距很大。</li>
+<li>Git没有一个全局版本号，而SVN有：目前为止这是跟SVN相比Git缺少的最大的一个特征。</li>
+<li>Git的内容的完整性要优于SVN： GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。</li>
+<li>Git下载下来后，在OffLine状态下可以看到所有的Log,SVN不可以。</li>
+<li>SVN必须先Update才能Commit,忘记了合并时就会出现一些错误，git还是比较少的出现这种情况。</li>
+<li>克隆一份全新的目录以同样拥有五个分支来说，SVN是同时复制5个版本的文件,也就是说重复五次同样的动作。而Git只是获取文件的每个版本的 元素，然后只载入主要的分支(master)在我的经验,克隆一个拥有将近一万个提交(commit),五个分支,每个分支有大约1500个文件的 SVN,耗了将近一个小时！而Git只用了区区的1分钟！</li>
+<li>版本库（repository)：SVN只能有一个指定中央版本库。当这个中央版本库有问题时，所有工作成员都一起瘫痪直到版本库维修完毕或者新的版本库设立完成。而 Git可以有无限个版本库。或者，更正确的说法，每一个Git都是一个版本库，区别是它们是否拥有活跃目录（Git Working Tree）。<strong>如果主要版本库（例如：置於GitHub的版本库）发生了什麼事，工作成员仍然可以在自己的本地版本库（local repository）提交，等待主要版本库恢复即可。</strong>工作成员也可以提交到其他的版本库！</li>
+<li>分支（Branch）：在SVN，分支是一个完整的目录。且这个目录拥有完整的实际文件。如果工作成员想要开啟新的分支，那将会影响“全世界”！每个人都会拥有和你一样的分支。如果你的分支是用来进行破坏工作（安检测试），那将会像传染病一样,你改一个分支，还得让其他人重新切分支重新下载，十分狗血。<strong>而 Git，每个工作成员可以任意在自己的本地版本库开启无限个分支。</strong>举例：当我想尝试破坏自己的程序（安检测试），并且想保留这些被修改的文件供日后使用， 我可以开一个分支，做我喜欢的事。完全不需担心妨碍其他工作成员。只要我不合并及提交到主要版本库，没有一个工作成员会被影响。等到我不需要这个分支时， 我只要把它从我的本地版本库删除即可。Git的分支名是可以使用不同名字的。例如：我的本地分支名为OK，而在主要版本库的名字其实是master。最值得一提，我可以在Git的任意一个提交点（commit point）开启分支！（其中一个方法是使用gitk –all 可观察整个提交记录，然后在任意点开啟分支。）</li>
+<li><p>提交（Commit）：<strong>在SVN，当你提交你的完成品时，它将直接记录到中央版本库。当你发现你的完成品存在严重问题时，你已经无法阻止事情的发生了。如果网路中断，你根本没办法提交！</strong>而Git的提交完全属於本地版本库的活动。而你只需“推”（git push）到主要版本库即可。Git的“推”其实是在执行“同步”（Sync）。</p>
+</li>
+<li><p>总结：</p>
+<ul>
+<li>SVN的特点是简单，只是需要一个放代码的地方时用是OK的。  </li>
+<li>Git的特点版本控制可以不依赖网络做任何事情，对分支和合并有更好的支持(当然这是开发者最关心的地方)，不过想各位能更好使用它，需要花点时间尝试下。</li>
+</ul>
+</li>
+</ul>
+<h2 id="iOS开发之使用Git的基本使用"><a href="#iOS开发之使用Git的基本使用" class="headerlink" title="iOS开发之使用Git的基本使用"></a>iOS开发之使用Git的基本使用</h2><p>一、GitHub准备工作  </p>
+<p><a href="https://github.com/mlj311" target="_blank" rel="noopener">跳转我的GitHUb</a>，并且创建一个仓库名字</p>
+<p>二、项目准备工作</p>
+<ol>
+<li>在你的代码目录下（此处以桌面为例）建一个新的目录（文件夹，此处为testGit）</li>
+<li>打开终端，切换到上面的文件夹，使用 git init命令初始化</li>
+<li>用Xcode创建一个iOS项目，该项目就放在刚刚新建的文件夹下</li>
+<li>在Xcode里面选择菜单Source Control下的commit</li>
+</ol>
+<p>三、关联GitHub和项目代码</p>
+<ul>
+<li>打开网站 <a href="https://help.github.com" target="_blank" rel="noopener">https://help.github.com</a> ，这个是GitHub的帮助网站，搜索ssh，选择红框的选项：Generating a new SSH key and adding it to the ssh-agent</li>
+<li>打开之后里面有教大家如何产生SSH key，主要用到一个命令：<code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code>,写入终端获取密钥</li>
+<li>新建一个终端，然后执行上面的命令，一直回车，直到看到如下的界面说明生成SSH key成功</li>
+<li>此时在用户文件夹下会产生一个ssh的隐藏文件夹，cd切换到该ssh目录下，可以通过ls -a可以看到该文件下有两个重要文件id_rsa和id_rsa.pub，命令：  <ul>
+<li>cd ~</li>
+<li>cd .ssh/</li>
+<li>ls -a</li>
+</ul>
+</li>
+<li>在终端直接使用pbcopy &lt; id_rsa.pub命令复制一下密钥，此时密钥已经在剪贴板</li>
+<li>重新打开一个GitHub网页，点击个人头像，打开Settings,选择左边的SSH and PGP keys，然后点击右侧的New SSH key，最后将密钥粘贴过去，添加SSH key</li>
+<li>找到GitHub准备工作中让大家复制的指令，打开终端切换到项目文件夹，执行该命令:<code>git remote add orgin https://github.com/mlj311/Test</code></li>
+<li>打开Xcode选择菜单Source Control，点击的push按钮，然后输入自己的GitHub帐号和密码，等待上传完成<ul>
+<li>问题：reference ‘refs/heads/master’ not found (-9)</li>
+<li>解决：</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -691,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8-21"><span class="nav-number">1.</span> <span class="nav-text">8.21</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-NSThread、NSOperation和GCD区别"><span class="nav-number">1.1.</span> <span class="nav-text">iOS-NSThread、NSOperation和GCD区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化"><span class="nav-number">1.2.</span> <span class="nav-text">iOS性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-内存管理-ARC"><span class="nav-number">1.3.</span> <span class="nav-text">iOS - 内存管理(ARC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS强引用与弱引用"><span class="nav-number">1.4.</span> <span class="nav-text">iOS强引用与弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView的使用"><span class="nav-number">1.5.</span> <span class="nav-text">WebView的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-如何高效的使用多线程以及对多线程的理解"><span class="nav-number">1.6.</span> <span class="nav-text">iOS 如何高效的使用多线程以及对多线程的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios网络请求时-如何保证网络安全"><span class="nav-number">1.7.</span> <span class="nav-text">ios网络请求时,如何保证网络安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS常见的几种加密方法"><span class="nav-number">1.8.</span> <span class="nav-text">iOS常见的几种加密方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS网络请求安全"><span class="nav-number">1.9.</span> <span class="nav-text">iOS网络请求安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS界面布局的几种方式"><span class="nav-number">1.10.</span> <span class="nav-text">iOS界面布局的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密和非对称加密的区别？分别有哪些算法的实现？"><span class="nav-number">1.11.</span> <span class="nav-text">对称加密和非对称加密的区别？分别有哪些算法的实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http和https的区别"><span class="nav-number">1.12.</span> <span class="nav-text">http和https的区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8-21"><span class="nav-number">1.</span> <span class="nav-text">8.21</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-NSThread、NSOperation和GCD区别"><span class="nav-number">1.1.</span> <span class="nav-text">iOS-NSThread、NSOperation和GCD区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化"><span class="nav-number">1.2.</span> <span class="nav-text">iOS性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-内存管理-ARC"><span class="nav-number">1.3.</span> <span class="nav-text">iOS - 内存管理(ARC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS强引用与弱引用"><span class="nav-number">1.4.</span> <span class="nav-text">iOS强引用与弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView的使用"><span class="nav-number">1.5.</span> <span class="nav-text">WebView的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-如何高效的使用多线程以及对多线程的理解"><span class="nav-number">1.6.</span> <span class="nav-text">iOS 如何高效的使用多线程以及对多线程的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios网络请求时-如何保证网络安全"><span class="nav-number">1.7.</span> <span class="nav-text">ios网络请求时,如何保证网络安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS常见的几种加密方法"><span class="nav-number">1.8.</span> <span class="nav-text">iOS常见的几种加密方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS网络请求安全"><span class="nav-number">1.9.</span> <span class="nav-text">iOS网络请求安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS界面布局的几种方式"><span class="nav-number">1.10.</span> <span class="nav-text">iOS界面布局的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密和非对称加密的区别？分别有哪些算法的实现？"><span class="nav-number">1.11.</span> <span class="nav-text">对称加密和非对称加密的区别？分别有哪些算法的实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http和https的区别"><span class="nav-number">1.12.</span> <span class="nav-text">http和https的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-22"><span class="nav-number">2.</span> <span class="nav-text">8.22</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ios-线程间通信"><span class="nav-number">2.1.</span> <span class="nav-text">ios 线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-中几种常用的锁总结"><span class="nav-number">2.2.</span> <span class="nav-text">iOS 中几种常用的锁总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVN与Git的区别"><span class="nav-number">2.3.</span> <span class="nav-text">SVN与Git的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS开发之使用Git的基本使用"><span class="nav-number">2.4.</span> <span class="nav-text">iOS开发之使用Git的基本使用</span></a></li></ol></li></ol></div>
             
 
           </div>
