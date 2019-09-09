@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/钢铁侠 32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/钢铁侠 16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/ironman.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CoreData," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="学习CoreData CoreData的简单理解 CoreData是一个模型层的技术，也是一种持久化技术，它能将模型对象的状态持久化到磁盘里，我们不需要使用SQL语句就能对它进行操作。  CoreData不是一个数据库但是可以使用数据库来存储数据，也可以使用其他方式，比如：数据库文件，XML，二进制文件，内存等。CoreData 提供了对象-关系映射(ORM) 功能。能够实现数据库数据和 OC">
+<meta name="keywords" content="CoreData">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习CoreData">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/学习CoreData/index.html">
+<meta property="og:site_name" content="Listen to me">
+<meta property="og:description" content="学习CoreData CoreData的简单理解 CoreData是一个模型层的技术，也是一种持久化技术，它能将模型对象的状态持久化到磁盘里，我们不需要使用SQL语句就能对它进行操作。  CoreData不是一个数据库但是可以使用数据库来存储数据，也可以使用其他方式，比如：数据库文件，XML，二进制文件，内存等。CoreData 提供了对象-关系映射(ORM) 功能。能够实现数据库数据和 OC">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/13.png">
+<meta property="og:updated_time" content="2019-09-09T08:35:57.829Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习CoreData">
+<meta name="twitter:description" content="学习CoreData CoreData的简单理解 CoreData是一个模型层的技术，也是一种持久化技术，它能将模型对象的状态持久化到磁盘里，我们不需要使用SQL语句就能对它进行操作。  CoreData不是一个数据库但是可以使用数据库来存储数据，也可以使用其他方式，比如：数据库文件，XML，二进制文件，内存等。CoreData 提供了对象-关系映射(ORM) 功能。能够实现数据库数据和 OC">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/09/学习CoreData/BlogImage/CoreDataImage/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/09/学习CoreData/"/>
+
+
+
+
+
+  <title>学习CoreData | Listen to me</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Listen to me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">MLJ-Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/学习CoreData/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maolujun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Listen to me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习CoreData</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-09T16:06:07+08:00">
+                2019-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learn/" itemprop="url" rel="index">
+                    <span itemprop="name">learn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/09/学习CoreData/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/09/09/学习CoreData/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!--此行为注释-->
+<p>学习CoreData</p>
+<h1 id="CoreData的简单理解"><a href="#CoreData的简单理解" class="headerlink" title="CoreData的简单理解"></a>CoreData的简单理解</h1><ul>
+<li><p>CoreData是一个模型层的技术，也是一种持久化技术，它能将模型对象的状态持久化到磁盘里，我们不需要使用SQL语句就能对它进行操作。</p>
+</li>
+<li><p>CoreData不是一个数据库但是可以使用数据库来存储数据，也可以使用其他方式，比如：数据库文件，XML，二进制文件，内存等。CoreData 提供了对象-关系映射(ORM) 功能。能够实现数据库数据和 OC 对象的相互转换，在这个转换过程中我们不需要编写任何 SQL 语句。</p>
+</li>
+<li><p>为什么要使用CoreData<br>极大的减少Model层的代码量<br>优化了使用SQLite时候的性能<br>提供了可视化设计</p>
+</li>
+</ul>
+<h1 id="CoreData的使用"><a href="#CoreData的使用" class="headerlink" title="CoreData的使用"></a>CoreData的使用</h1><h2 id="创建步骤"><a href="#创建步骤" class="headerlink" title="创建步骤"></a>创建步骤</h2><ul>
+<li>如果你是一个新的项目 可以创建项目的时候选择 CoreData 如图<br><img src="BlogImage/CoreDataImage/1.png" alt="1"></li>
+<li>如果是老的项目 之前没有使用CoreData ,则按照如下的步骤：<br>第一步：先创建.xcdatamodeld文件 （右键 -&gt; New File -&gt; iOS -&gt; Core Data -&gt;Data Model）<br><img src="BlogImage/CoreDataImage/2.png" alt="2"></li>
+<li>第二步：命名然后创建（这里的名字要在后面操作的时候使用，要命好名字）<br><img src="BlogImage/CoreDataImage/3.png" alt="3"></li>
+<li>成功<br><img src="BlogImage/CoreDataImage/4.png" alt="4">  </li>
+</ul>
+<h2 id="新项目开始"><a href="#新项目开始" class="headerlink" title="新项目开始"></a>新项目开始</h2><ul>
+<li>创建 CodeDataMode 实体，并在实体中添加我们需要的键值 如图<br><img src="BlogImage/CoreDataImage/5.png" alt="5"><br><img src="BlogImage/CoreDataImage/6.png" alt="6"> </li>
+</ul>
+<h2 id="使用相应的类"><a href="#使用相应的类" class="headerlink" title="使用相应的类"></a>使用相应的类</h2><ul>
+<li><p>NSManagedObjectContext<br>数据库操作：NSManagedObjectContext 被管理的对象上下文（对数据直接操作）<br>NSManagedObjectContext：等同于一个容器，用来存储从数据库中转换出来的所有的 OC 对象。我们的增删改查操作直接对这个类使用来获得或者修改需要的 OC 对象，它能够调用 NSPersistentStoreCoordinator 类实现对数据库的同步，这个对象有点像SQLite对象(用来管理.xcdatamodeld中的数据)。<br>负责数据和应用库之间的交互(CRUD，即增删改查、保存等接口都是用这个对象调用).<br>每个 NSManagedObjectContext 和其他 NSManagedObjectContext 都是完全独立的。<br>所有的NSManagedObject（个人理解：实体数据）都存在于NSManagedObjectContext中。<br>每个NSManagedObjectContext都知道自己管理着哪些NSManagedObject（实体数据）<br>可以通过TA去访问底层的框架对象集合，这些对象集合统称为持久化堆栈（persistence stack）——它在应用程序和外部数据存储的对象之间提供访问通道</p>
+</li>
+<li><p>NSManagedObject<br>NSManagedObject的工作模式有点类似于NSDictionary对象,通过键-值对来存取所有的实体属性. NSManagedObject：数据库中的数据转换而来的OC对象<br>setValue:forkey:存储属性值(属性名为key);<br>valueForKey:获取属性值(属性名为key).<br>每个NSManagedObject都知道自己属于哪个NSManagedObjectContext 用于插入数据使用：获得实体，改变实体各个属性值，保存后就代表插入</p>
+</li>
+<li><p>NSEntityDescription<br>NSEntityDescription 用来描述实体(Entity) 表格结构： 相当于数据库中的一个表，TA描述一种抽象数据类型<br>通过Core Data从数据库中取出的对象,默认情况下都是NSManagedObject对象.<br>+insertNewObjectForEntityForName:inManagedObjectContext: 工厂方法，根据给定的 Entity 描述，生成相应的 NSManagedObject 对象，并插入到 ManagedObjectContext 中<br>LHModel * model = [NSEntityDescription insertNewObjectForEntityForName:@“CoreDataMode” inManagedObjectContext:self.managedObjectContext];<br>通过上面的代码可以得到model这个表的实例，然后可以使用这个实例去为表中的属性赋值<br>model.title = @“标题”;<br>model.content = @“内容”;</p>
+</li>
+<li><p>NSPersistentStoreCoordinator<br>NSPersistentStoreCoordinator 持久化存储库，CoreData的存储类型（比如SQLite数据库就是其中一种）。<br>用来将对象管理部分和持久化部分捆绑在一起，负责相互之间的交流<br>用来设置CoreData存储类型和存储路径<br>使用 Core Data document 类型的应用程序，通常会从磁盘上的数据文中中读取或存储数据，这写底层的读写就由 Persistent Store Coordinator 来处理。一 般我们无需与它直接打交道来读写文件，Managed Object Context 在背后已经为我们调用 Persistent Store Coordinator 做了这部分工作<br>NSPersistentStoreCoordinator：通过解析结果去实现数据库和 OC 对象之间的相互转换，主要是操作数据库的，我们一般用不上，由系统处理</p>
+</li>
+<li><p>NSManagedObjectModel<br>NSManagedObjectModel Core Data的模型文件，有点像SQLite的.sqlite文件(个人理解：表示一个.xcdatamodeld文件)应用程序的数据模型，数据库中所有表格和他们之间的联系<br>NSManagedObjectModel：负责读取解析 .momod 文件<br>NSManagedObjectModel <em> model = [self managedObjectModel];//获取实例<br>NSDictionary </em> entities = [model entitiesByName];//entitiesByName 得到所有的表的名字<br>NSEntityDescription * entity = [entities valueForKey:@“CoreDataModel”];//从里面找出名为 Student 的表  </p>
+</li>
+</ul>
+<h2 id="具体实现-创建CoreDataManager-类"><a href="#具体实现-创建CoreDataManager-类" class="headerlink" title="具体实现 创建CoreDataManager 类"></a>具体实现 创建CoreDataManager 类</h2><p>CoreDataManager.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;  </span><br><span class="line">#import &lt;CoreData/CoreData.h&gt;  </span><br><span class="line">@interface CoreDataManager : NSObject  </span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 上下文  容器</span><br><span class="line"> * 存放的是 所有从数据库中取出的转换成OC对象</span><br><span class="line"> */  </span><br><span class="line"> </span><br><span class="line">@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext; </span><br><span class="line"></span><br><span class="line">/* 读取解析 .momd文件中的内容 */</span><br><span class="line">@property (strong, nonatomic) NSManagedObjectModel * managedObjectModel;  </span><br><span class="line"></span><br><span class="line">/* 连接的类，处理数据库数据和OC数据底层的相互转换 */</span><br><span class="line">@property (strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;  </span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 单例</span><br><span class="line"> @return CoreDataManager</span><br><span class="line"> */</span><br><span class="line">+ (instancetype)sharedInstance;</span><br><span class="line">+ /**</span><br><span class="line"> 插入数据</span><br><span class="line"> @param dict 字典中的键值对必须要与实体中的每个名字一一对应</span><br><span class="line"> @param success 成功回调</span><br><span class="line"> @param fail 失败回调</span><br><span class="line"> */</span><br><span class="line">- (void)insertNewEntity:(NSDictionary *)dict success:(void(^)(void))success fail:(void(^)(NSError *error))fail;  </span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 查询数据</span><br><span class="line"> @param selectKays 数组高级排序（数组里存放实体中的key，顺序按自己需要的先后存放即可），实体key来排序</span><br><span class="line"> @param isAscending 升序降序</span><br><span class="line"> @param filterString 查询条件</span><br><span class="line"> @param filterString 成功回调</span><br><span class="line"> @param fail 失败回调</span><br><span class="line"> */</span><br><span class="line">- (void)selectEntity:(NSArray *)selectKays ascending:(BOOL)isAscending filterString:(NSString *)filterString success:(void(^)(NSArray *results))success fail:(void(^)(NSError *error))fail;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 删除数据</span><br><span class="line"> @param model NSManagedObject</span><br><span class="line"> @param success 成功回调</span><br><span class="line"> @param fail 失败回调</span><br><span class="line"> */</span><br><span class="line">- (void)deleteEntity:(NSManagedObject *)model success:(void(^)(void))success fail:(void(^)(NSError *error))fail;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 更新数据</span><br><span class="line"> @param success 成功回调</span><br><span class="line"> @param fail 失败回调</span><br><span class="line"> */</span><br><span class="line">- (void)updateEntity:(void(^)(void))success fail:(void(^)(NSError *error))fail;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">CoreDataManager.m</span><br></pre></td></tr></table></figure>
+<p>#import “CoreDataManager.h”</p>
+<p>//获取CoreData的.xcdatamodel文件的名称<br>static NSString <em> const coreDataModelName = @”CoreDataText”;<br>//获取CodeData<br>static NSString </em> const coreDataEntityName = @”CoreDataMode”;<br>//数据库<br>static NSString * const sqliteName = @”CoreDataMode.sqlite”;<br>@interface CoreDataManager()</p>
+<p>@end</p>
+<p>@implementation CoreDataManager<br>@synthesize managedObjectContext = _managedObjectContext;<br>@synthesize managedObjectModel = _managedObjectModel;<br>@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;</p>
+<p>static CoreDataManager *coreDataManager = nil;</p>
+<ul>
+<li><p>(instancetype)sharedInstance<br>{<br>  static dispatch_once_t onceToken;<br>  dispatch_once(&amp;onceToken, ^{</p>
+<pre><code>coreDataManager = [[CoreDataManager alloc] init];
+</code></pre><p>  });<br>  return coreDataManager;<br>}</p>
+</li>
+<li><p>(instancetype)allocWithZone:(struct _NSZone *)zone<br>{<br>  static dispatch_once_t onceToken;<br>  dispatch_once(&amp;onceToken, ^{</p>
+<pre><code>if (coreDataManager == nil) {
+    coreDataManager = [super allocWithZone:zone];
+}
+</code></pre><p>  });<br>  return coreDataManager;<br>}</p>
+</li>
+</ul>
+<ul>
+<li><p>(void)insertNewEntity:(NSDictionary <em>)dict success:(void (^)(void))success fail:(void (^)(NSError </em>))fail {<br>  if (!dict||dict.allKeys.count == 0) return;<br>  // 通过传入上下文和实体名称，创建一个名称对应的实体对象（相当于数据库一组数据，其中含有多个字段）<br>  NSManagedObject <em> entity = [NSEntityDescription insertNewObjectForEntityForName:coreDataEntityName inManagedObjectContext:self.managedObjectContext];<br>  // 实体对象存储属性值（相当于数据库中将一个值存入对应字段)<br>  for (NSString </em>key in [dict allKeys]) {</p>
+<pre><code>[entity setValue:[dict objectForKey:key] forKey:key];
+</code></pre><p>  }<br>  // 保存信息，同步数据<br>  NSError *error = nil;<br>  BOOL result = [self.managedObjectContext save:&amp;error];<br>  if (!result) {</p>
+<pre><code>NSLog(@&quot;添加数据失败：%@&quot;,error);
+if (fail) {
+    fail(error);
+}
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;添加数据成功&quot;);
+if (success) {
+    success();
+}
+</code></pre><p>  }<br>}</p>
+</li>
+<li><p>(void)deleteEntity:(NSManagedObject <em>)model success:(void (^)(void))success fail:(void (^)(NSError </em>))fail {<br>  // 传入需要删除的实体对象<br>  [self.managedObjectContext deleteObject:model];<br>  // 同步到数据库<br>  NSError *error = nil;<br>  [self.managedObjectContext save:&amp;error];<br>  if (error) {</p>
+<pre><code>NSLog(@&quot;删除失败：%@&quot;,error);
+if (fail) {
+    fail(error);
+}
+</code></pre><p>  } else {</p>
+<pre><code>NSLog(@&quot;删除成功&quot;);
+if (success) {
+    success();
+}
+</code></pre><p>  }<br>}</p>
+</li>
+<li><p>(void)selectEntity:(NSArray <em>)selectKays ascending:(BOOL)isAscending filterString:(NSString </em>)filterString success:(void (^)(NSArray <em>))success fail:(void (^)(NSError </em>))fail {<br>  // 1.初始化一个查询请求<br>  NSFetchRequest <em>request = [[NSFetchRequest alloc] init];<br>  // 2.设置要查询的实体<br>  NSEntityDescription </em>desc = [NSEntityDescription entityForName:coreDataEntityName inManagedObjectContext:self.managedObjectContext];<br>  request.entity = desc;<br>  // 3.设置查询结果排序<br>  if (selectKays&amp;&amp;selectKays.count&gt;0) { // 如果进行了设置排序</p>
+<pre><code>NSMutableArray *array = [NSMutableArray array];
+for (NSString *key in selectKays) {
+    /**
+     *  设置查询结果排序
+     *  sequenceKey:根据某个属性（相当于数据库某个字段）来排序
+     *  isAscending:是否升序
+     */
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:isAscending];
+    [array addObject:sort];
+}
+if (array.count&gt;0) {
+    request.sortDescriptors = array;// 可以添加多个排序描述器，然后按顺序放进数组即可
+}
+</code></pre><p>  }<br>  // 4.设置条件过滤<br>  if (filterString) { // 如果设置了过滤语句</p>
+<pre><code>NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
+request.predicate = predicate;
+</code></pre><p>  }<br>  // 5.执行请求<br>  NSError <em>error = nil;<br>  NSArray </em>objs = [self.managedObjectContext executeFetchRequest:request error:&amp;error]; // 获得查询数据数据集合<br>  if (error) {</p>
+<pre><code>NSLog(@&quot;失败&quot;);
+if (fail) {
+    fail(error);
+}
+</code></pre><p>  } else{</p>
+<pre><code>NSLog(@&quot;成功&quot;);
+if (success) {
+    success(objs);
+}
+</code></pre><p>  }<br>}</p>
+</li>
+<li><p>(void)updateEntity:(void (^)(void))success fail:(void (^)(NSError <em>))fail {<br>  NSError </em>error = nil;<br>  [self.managedObjectContext save:&amp;error];<br>  if (error) {</p>
+<pre><code>NSLog(@&quot;删除失败：%@&quot;,error);
+if (fail) {
+    fail(error);
+}
+</code></pre><p>  } else {</p>
+<pre><code>if (success) {
+    success();
+}
+</code></pre><p>  }<br>}</p>
+</li>
+</ul>
+<p>#pragma 懒加载<br>//managedObjectModel 属性的getter方法<br>-(NSManagedObjectModel <em>)managedObjectModel<br>{<br>    if (_managedObjectModel != nil) return _managedObjectModel;<br>    //.xcdatamodeld文件 编译之后变成.momd文件  （.mom文件）<br>    NSURL </em> modelURL = [[NSBundle mainBundle] URLForResource:coreDataModelName withExtension:@”momd”];<br>    //把文件的内容读取到managedObjectModel中<br>    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];<br>    return _managedObjectModel;<br>}</p>
+<p>//Coordinator 调度者负责数据库的操作 创建数据库 打开数据 增删改查数据<br>-(NSPersistentStoreCoordinator <em>)persistentStoreCoordinator<br>{<br>    if (_persistentStoreCoordinator != nil) return _persistentStoreCoordinator;<br>    //根据model创建了persistentStoreCoordinator<br>    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];<br>    // 设置数据库存放的路径<br>    NSURL </em> storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:sqliteName];<br>    NSError <em> error = nil;<br>    //如果没有得到数据库，程序崩溃<br>    /</em><br>     持久化存储库的类型：<br>     NSSQLiteStoreType  SQLite数据库<br>     NSBinaryStoreType  二进制平面文件<br>     NSInMemoryStoreType 内存库，无法永久保存数据<br>     虽然这3种类型的性能从速度上来说都差不多，但从数据模型中保留下来的信息却不一样<br>     在几乎所有的情景中，都应该采用默认设置，使用SQLite作为持久化存储库<br>     */<br>    // 添加一个持久化存储库并设置类型和路径，NSSQLiteStoreType：SQLite作为存储库<br>    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&amp;error])<br>    {<br>        if (error) {<br>            NSLog(@”添加数据库失败:%@”,error);<br>        } else {<br>            NSLog(@”添加数据库成功”);<br>        }<br>        NSLog(@”错误信息: %@, %@”, error, [error userInfo]);<br>    }<br>    return _persistentStoreCoordinator;<br>}</p>
+<p>-(NSURL *)applicationDocumentsDirectory<br>{<br>    //获取沙盒路径下documents文件夹的路径 NSURL   (类似于search)<br>    NSLog(@”%@”,[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString);<br>    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];<br>}</p>
+<p>//容器类 存放OC的对象<br>-(NSManagedObjectContext <em>)managedObjectContext<br>{<br>    if (_managedObjectContext != nil)  return _managedObjectContext;<br>    NSPersistentStoreCoordinator </em> coordinator = [self persistentStoreCoordinator];<br>    if (!coordinator)<br>    {<br>        return nil;<br>    }<br>    //创建context对象<br>    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];<br>    //让context和coordinator关联   context可以对数据进行增删改查功能   // 设置上下文所要关联的持久化存储库<br>    [_managedObjectContext setPersistentStoreCoordinator:coordinator];<br>    return _managedObjectContext;<br>}<br>@end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 5、具体使用</span><br><span class="line"></span><br><span class="line">* 增 insert</span><br></pre></td></tr></table></figure></p>
+<p>NSDictionary <em> dict = @{@”title”:@”title2”,@”content”:@”content2”};<br> [[CoreDataManager sharedInstance] insertNewEntity:dict success:^{<br>     NSLog(@”成功”);<br> } fail:^(NSError </em>error) {<br>     NSLog(@”失败”);<br> }];</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行结果 ：</span><br></pre></td></tr></table></figure>
+<p>2018-11-12 13:25:06.730756+0800 CoreDataText[1600:1182994] 添加数据成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数据库中显示：  </span><br><span class="line"></span><br><span class="line">![7](BlogImage/CoreDataImage/7.png)</span><br><span class="line"></span><br><span class="line">* 查询 select</span><br></pre></td></tr></table></figure>
+<p>[[CoreDataManager sharedInstance] selectEntity:nil ascending:YES filterString:nil success:^(NSArray <em>results)            {<br>     NSLog(@”数据—%@”,results);<br> } fail:^(NSError </em>error) {</p>
+<p> }];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">运行结果：  </span><br><span class="line"></span><br><span class="line">![8](BlogImage/CoreDataImage/8.png)</span><br><span class="line"></span><br><span class="line">![9](BlogImage/CoreDataImage/9.png)</span><br><span class="line"></span><br><span class="line">* 改 updata</span><br></pre></td></tr></table></figure></p>
+<p>[[CoreDataManager sharedInstance] selectEntity:nil ascending:YES filterString:nil success:^(NSArray <em>results) {<br>     NSLog(@”数据—%@”,results);<br>     if (results.count&gt;0) {<br>          //更新某个<br>          NSManagedObject </em> model = [results firstObject];<br>         [model setValue:@”xiugaile title” forKey:@”title”];<br>         [model setValue:@”xiugaile content” forKey:@”content”];<br>         [[CoreDataManager sharedInstance] updateEntity:^{<br>         } fail:^(NSError <em>error) {<br>         }];<br>     }<br>} fail:^(NSError </em>error) {</p>
+<p>}];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">运行结果 ：</span><br><span class="line"></span><br><span class="line">![10](BlogImage/CoreDataImage/10.png)</span><br><span class="line"></span><br><span class="line">![11](BlogImage/CoreDataImage/11.png)</span><br><span class="line"></span><br><span class="line">* 删除 delete</span><br></pre></td></tr></table></figure></p>
+<p>//删除某个<br>NSString <em> filterString = [NSString stringWithFormat:@”title = ‘title’”];<br>[[CoreDataManager sharedInstance] selectEntity:nil ascending:YES filterString:filterString success:^(NSArray </em>results) {<br>    NSLog(@”数据—%@”,results);<br>    if (results.count&gt;0) {<br>        //删除某个<br>        [[CoreDataManager sharedInstance] deleteEntity:[results firstObject] success:^{<br>        } fail:^(NSError *error) {<br>        }];<br>      }</p>
+<p> } fail:^(NSError <em>error) {<br>}];<br>//全部删除<br>[[CoreDataManager sharedInstance] selectEntity:nil ascending:YES filterString:nil success:^(NSArray </em>results) {<br>     NSLog(@”数据—%@”,results);<br>    //全部删除<br>    for (NSManagedObject <em>obj in results){<br>        [[CoreDataManager sharedInstance] deleteEntity:obj success:^{<br>        } fail:^(NSError </em>error) {<br>        }];<br>    }<br>} fail:^(NSError *error) {</p>
+<p>}];<br>```</p>
+<p>运行结果：</p>
+<p><img src="BlogImage/CoreDataImage/12.png" alt="12"></p>
+<p><img src="BlogImage/CoreDataImage/13.png" alt="13"></p>
+<p>转载自<a href="https://blog.csdn.net/u013983033/article/details/83378838" target="_blank" rel="noopener">CoreData</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CoreData/" rel="tag"># CoreData</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/21/2019亲身面试所得/" rel="next" title="2019亲身面试所得">
+                <i class="fa fa-chevron-left"></i> 2019亲身面试所得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a45fbb5703d71a6" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">maolujun</p>
+              <p class="site-description motion-element" itemprop="description">One is never too old to learn</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreData的简单理解"><span class="nav-number">1.</span> <span class="nav-text">CoreData的简单理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreData的使用"><span class="nav-number">2.</span> <span class="nav-text">CoreData的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建步骤"><span class="nav-number">2.1.</span> <span class="nav-text">创建步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新项目开始"><span class="nav-number">2.2.</span> <span class="nav-text">新项目开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用相应的类"><span class="nav-number">2.3.</span> <span class="nav-text">使用相应的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现-创建CoreDataManager-类"><span class="nav-number">2.4.</span> <span class="nav-text">具体实现 创建CoreDataManager 类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">maolujun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://MaoLuJun.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/09/09/学习CoreData/';
+          this.page.identifier = '2019/09/09/学习CoreData/';
+          this.page.title = '学习CoreData';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MaoLuJun.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
