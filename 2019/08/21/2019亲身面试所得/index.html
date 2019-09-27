@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="2019亲身面试所得">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-26T08:07:31.268Z">
+<meta property="og:updated_time" content="2019-09-27T10:25:38.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019亲身面试所得">
 <meta name="twitter:description" content="2019亲身面试所得">
@@ -589,17 +589,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="iOS开发之使用Git的基本使用"><a href="#iOS开发之使用Git的基本使用" class="headerlink" title="iOS开发之使用Git的基本使用"></a>iOS开发之使用Git的基本使用</h2><p>一、GitHub准备工作  </p>
-<p><a href="https://github.com/mlj311" target="_blank" rel="noopener">跳转我的GitHUb</a>，并且创建一个仓库名字</p>
-<p>二、项目准备工作</p>
-<ol>
+<h2 id="iOS开发之使用Git的基本使用"><a href="#iOS开发之使用Git的基本使用" class="headerlink" title="iOS开发之使用Git的基本使用"></a>iOS开发之使用Git的基本使用</h2><h3 id="一、GitHub准备工作"><a href="#一、GitHub准备工作" class="headerlink" title="一、GitHub准备工作"></a>一、GitHub准备工作</h3><p><a href="https://github.com/mlj311" target="_blank" rel="noopener">跳转我的GitHUb</a>，并且创建一个仓库名字</p>
+<h3 id="二、项目准备工作"><a href="#二、项目准备工作" class="headerlink" title="二、项目准备工作"></a>二、项目准备工作</h3><ol>
 <li>在你的代码目录下（此处以桌面为例）建一个新的目录（文件夹，此处为testGit）</li>
 <li>打开终端，切换到上面的文件夹，使用 git init命令初始化</li>
 <li>用Xcode创建一个iOS项目，该项目就放在刚刚新建的文件夹下</li>
 <li>在Xcode里面选择菜单Source Control下的commit</li>
 </ol>
-<p>三、关联GitHub和项目代码</p>
-<ul>
+<h3 id="三、关联GitHub和项目代码"><a href="#三、关联GitHub和项目代码" class="headerlink" title="三、关联GitHub和项目代码"></a>三、关联GitHub和项目代码</h3><h4 id="1、上传项目至git仓库"><a href="#1、上传项目至git仓库" class="headerlink" title="1、上传项目至git仓库"></a>1、上传项目至git仓库</h4><ul>
 <li>打开网站 <a href="https://help.github.com" target="_blank" rel="noopener">https://help.github.com</a> ，这个是GitHub的帮助网站，搜索ssh，选择红框的选项：Generating a new SSH key and adding it to the ssh-agent</li>
 <li>打开之后里面有教大家如何产生SSH key，主要用到一个命令：<code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code>,写入终端获取密钥</li>
 <li>新建一个终端，然后执行上面的命令，一直回车，直到看到如下的界面说明生成SSH key成功</li>
@@ -612,12 +609,26 @@
 <li>在终端直接使用pbcopy &lt; id_rsa.pub命令复制一下密钥，此时密钥已经在剪贴板</li>
 <li>重新打开一个GitHub网页，点击个人头像，打开Settings,选择左边的SSH and PGP keys，然后点击右侧的New SSH key，最后将密钥粘贴过去，添加SSH key</li>
 <li>找到GitHub准备工作中让大家复制的指令，打开终端切换到项目文件夹，执行该命令:<code>git remote add orgin https://github.com/mlj311/Test</code></li>
-<li>打开Xcode选择菜单Source Control，点击的push按钮，然后输入自己的GitHub帐号和密码，等待上传完成<ul>
-<li>问题：reference ‘refs/heads/master’ not found (-9)</li>
-<li>解决：</li>
+<li>打开Xcode选择菜单Source Control，点击的push按钮，然后输入自己的GitHub帐号和密码，等待上传完成</li>
 </ul>
-</li>
-</ul>
+<p>1.1、假如已经有github了，那就简单了：</p>
+<p>1.1.1、创建一个新仓库”newProject“</p>
+<p>1.1.2、终端cd文件夹，输入指令：git init</p>
+<p>1.1.3、git add .</p>
+<p>1.1.4、git commit -m “newProject”  </p>
+<p>1.1.5、关联仓库：git remote add origin <a href="https://github.com/XXX/newProject.git" target="_blank" rel="noopener">https://github.com/XXX/newProject.git</a></p>
+<p>1.1.6、git push -u origin master</p>
+<h4 id="2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？"><a href="#2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？" class="headerlink" title="2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？"></a>2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？</h4><p>合并步骤：</p>
+<p>2.1、进入要合并的分支（如开发分支合并到master，则进入master目录）<br>git checkout master<br>git pull</p>
+<p>2.2、查看所有分支是否都pull下来了<br>git branch -a</p>
+<p>2.3、使用merge合并开发分支<br>git merge 分支名</p>
+<p>2.4、查看合并之后的状态<br>git status</p>
+<p>2.5、有冲突的话，解决冲突；</p>
+<p>2.6、解决冲突之后，将冲突文件提交暂存区<br>git add 冲突文件</p>
+<p>2.7、提交merge之后的结果<br>git commit</p>
+<p>如果不是使用git commit -m “备注” ，那么git会自动将合并的结果作为备注，提交本地仓库；</p>
+<p>2.8、本地仓库代码提交远程仓库<br>git push</p>
+<p>git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p>
 
       
     </div>
@@ -807,7 +818,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8-21"><span class="nav-number">1.</span> <span class="nav-text">8.21</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-NSThread、NSOperation和GCD区别"><span class="nav-number">1.1.</span> <span class="nav-text">iOS-NSThread、NSOperation和GCD区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化"><span class="nav-number">1.2.</span> <span class="nav-text">iOS性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-内存管理-ARC"><span class="nav-number">1.3.</span> <span class="nav-text">iOS - 内存管理(ARC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS强引用与弱引用"><span class="nav-number">1.4.</span> <span class="nav-text">iOS强引用与弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView的使用"><span class="nav-number">1.5.</span> <span class="nav-text">WebView的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-如何高效的使用多线程以及对多线程的理解"><span class="nav-number">1.6.</span> <span class="nav-text">iOS 如何高效的使用多线程以及对多线程的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios网络请求时-如何保证网络安全"><span class="nav-number">1.7.</span> <span class="nav-text">ios网络请求时,如何保证网络安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS常见的几种加密方法"><span class="nav-number">1.8.</span> <span class="nav-text">iOS常见的几种加密方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS网络请求安全"><span class="nav-number">1.9.</span> <span class="nav-text">iOS网络请求安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS界面布局的几种方式"><span class="nav-number">1.10.</span> <span class="nav-text">iOS界面布局的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密和非对称加密的区别？分别有哪些算法的实现？"><span class="nav-number">1.11.</span> <span class="nav-text">对称加密和非对称加密的区别？分别有哪些算法的实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http和https的区别"><span class="nav-number">1.12.</span> <span class="nav-text">http和https的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-22"><span class="nav-number">2.</span> <span class="nav-text">8.22</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ios-线程间通信"><span class="nav-number">2.1.</span> <span class="nav-text">ios 线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-中几种常用的锁总结"><span class="nav-number">2.2.</span> <span class="nav-text">iOS 中几种常用的锁总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVN与Git的区别"><span class="nav-number">2.3.</span> <span class="nav-text">SVN与Git的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS开发之使用Git的基本使用"><span class="nav-number">2.4.</span> <span class="nav-text">iOS开发之使用Git的基本使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8-21"><span class="nav-number">1.</span> <span class="nav-text">8.21</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-NSThread、NSOperation和GCD区别"><span class="nav-number">1.1.</span> <span class="nav-text">iOS-NSThread、NSOperation和GCD区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化"><span class="nav-number">1.2.</span> <span class="nav-text">iOS性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-内存管理-ARC"><span class="nav-number">1.3.</span> <span class="nav-text">iOS - 内存管理(ARC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS强引用与弱引用"><span class="nav-number">1.4.</span> <span class="nav-text">iOS强引用与弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView的使用"><span class="nav-number">1.5.</span> <span class="nav-text">WebView的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-如何高效的使用多线程以及对多线程的理解"><span class="nav-number">1.6.</span> <span class="nav-text">iOS 如何高效的使用多线程以及对多线程的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios网络请求时-如何保证网络安全"><span class="nav-number">1.7.</span> <span class="nav-text">ios网络请求时,如何保证网络安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS常见的几种加密方法"><span class="nav-number">1.8.</span> <span class="nav-text">iOS常见的几种加密方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS网络请求安全"><span class="nav-number">1.9.</span> <span class="nav-text">iOS网络请求安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS界面布局的几种方式"><span class="nav-number">1.10.</span> <span class="nav-text">iOS界面布局的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密和非对称加密的区别？分别有哪些算法的实现？"><span class="nav-number">1.11.</span> <span class="nav-text">对称加密和非对称加密的区别？分别有哪些算法的实现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http和https的区别"><span class="nav-number">1.12.</span> <span class="nav-text">http和https的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-22"><span class="nav-number">2.</span> <span class="nav-text">8.22</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ios-线程间通信"><span class="nav-number">2.1.</span> <span class="nav-text">ios 线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-中几种常用的锁总结"><span class="nav-number">2.2.</span> <span class="nav-text">iOS 中几种常用的锁总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVN与Git的区别"><span class="nav-number">2.3.</span> <span class="nav-text">SVN与Git的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS开发之使用Git的基本使用"><span class="nav-number">2.4.</span> <span class="nav-text">iOS开发之使用Git的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、GitHub准备工作"><span class="nav-number">2.4.1.</span> <span class="nav-text">一、GitHub准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、项目准备工作"><span class="nav-number">2.4.2.</span> <span class="nav-text">二、项目准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、关联GitHub和项目代码"><span class="nav-number">2.4.3.</span> <span class="nav-text">三、关联GitHub和项目代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、上传项目至git仓库"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">1、上传项目至git仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">2、对于复杂的系统，我们可能要开好几个分支来开发，那么怎样使用git合并分支呢？</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
