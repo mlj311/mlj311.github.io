@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019问题集锦]]></title>
+    <url>%2F2019%2F09%2F29%2F2019%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6%2F</url>
+    <content type="text"><![CDATA[2019 问题集锦 关于Xcode打包的时候出现的问题问题一：Code signing “AipBase.framework” failed.解决： 步骤1：在xcode中找到包含x86_64, i386的framework。如图所示序号4这里面的3个framework里面(AipBase.framewok,IdcardQuality.framework,AipOcrSdk.framework)都包含着x86_64, i386。 步骤2：用script命令去掉这3个framework里面不支持的x86_64, i386的结构 PS：序号10中粘贴的script命令如下 12345678910111213141516171819202122232425262728293031323334353637383940414243APP_PATH=&quot;$&#123;TARGET_BUILD_DIR&#125;/$&#123;WRAPPER_NAME&#125;&quot;# This script loops through the frameworks embedded in the application and# removes unused architectures.find &quot;$APP_PATH&quot; -name &apos;*.framework&apos; -type d | while read -r FRAMEWORKdoFRAMEWORK_EXECUTABLE_NAME=$(defaults read &quot;$FRAMEWORK/Info.plist&quot; CFBundleExecutable)FRAMEWORK_EXECUTABLE_PATH=&quot;$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME&quot;echo &quot;Executable is $FRAMEWORK_EXECUTABLE_PATH&quot;EXTRACTED_ARCHS=()for ARCH in $ARCHSdoecho &quot;Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME&quot;lipo -extract &quot;$ARCH&quot; &quot;$FRAMEWORK_EXECUTABLE_PATH&quot; -o &quot;$FRAMEWORK_EXECUTABLE_PATH-$ARCH&quot;EXTRACTED_ARCHS+=(&quot;$FRAMEWORK_EXECUTABLE_PATH-$ARCH&quot;)doneecho &quot;Merging extracted architectures: $&#123;ARCHS&#125;&quot;lipo -o &quot;$FRAMEWORK_EXECUTABLE_PATH-merged&quot; -create &quot;$&#123;EXTRACTED_ARCHS[@]&#125;&quot;rm &quot;$&#123;EXTRACTED_ARCHS[@]&#125;&quot;echo &quot;Replacing original executable with thinned version&quot;rm &quot;$FRAMEWORK_EXECUTABLE_PATH&quot;mv &quot;$FRAMEWORK_EXECUTABLE_PATH-merged&quot; &quot;$FRAMEWORK_EXECUTABLE_PATH&quot;done 参考：参考地址 问题二：更新了mac系统,想pod install 报错:zsh: /usr/local/bin/pod: bad interpreter: /System/Library/Frameworks/Ruby.framework解决:终端输入：sudo gem install -n /usr/local/bin cocoapods]]></content>
+      <categories>
+        <category>summary</category>
+      </categories>
+      <tags>
+        <tag>summary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iOS项目修改名字以及修改BundleID]]></title>
     <url>%2F2019%2F09%2F27%2FiOS%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%90%8D%E5%AD%97%E4%BB%A5%E5%8F%8A%E4%BF%AE%E6%94%B9BundleID%2F</url>
     <content type="text"><![CDATA[iOS项目修改名字以及修改BundleID – 前言应公司要求，把做完的 iOS和Android APP的包名啊，项目名称要改掉才能上线。Fine，OK，改呗，反正iOS改起来so easy，安卓小哥坐不住了，改包名好麻烦的，设计到很多啥啥的，但是改项目名称就简单了；iOS刚好相反，妈耶，改包名如此简单，改项目名称就涉及好多好多诶。不管安卓了，先去改了再说~~ 参考链接:修改项目参考链接、修改BundleID参考连接 APP更改包名（BundleID）1、修改 info.plist 文件中的 Bundle identifier（改成你想要的那个Bundle identifier，如：com.example.xxx），编译通过后，此时你会发现个 project -&gt;Target -&gt;General 中的 Bundle identifier发生了变化，变成了 com.example.xxx。 2、修改 Project -&gt; Build Setting -&gt; Packaging -&gt; Produce Bundle Identifier OK,搞定了，嘻嘻嘻 APP更改项目名称注意：重命名项目时，记得先备份好一份！！！记得先备份好一份！！！记得先备份好一份！！！（重要的事情说三遍） 修改前项目架构路径截图（为了便于观察项目名字采用，修改前-修改后） 直接上图喔 步骤：（修改测试pod项目,xcode11） 1、在xcode修改项目名（点击按return键输入项目名字） 2、(在项目文件包里)修改项目文件夹名 这时候xcode会弹出提示框，选了colose（如下图） 继续修改文件里的文件夹名字（如下图三处地方） 3、修改项目文件名（双击选择显示包内容） 双击所指文件选择显示包内容 修改所指文件里的所有文件名 修改Podfile里的项目名 4、打开项目从新引入pod再把旧的pods文件删了（如下图） 修改完成后截图]]></content>
