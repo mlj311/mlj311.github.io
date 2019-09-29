@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="2019 问题集锦">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/09/29/2019问题集锦/BlogImage/2019问题集锦Image/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/29/2019问题集锦/link1">
 <meta property="og:image" content="http://yoursite.com/2019/09/29/2019问题集锦/BlogImage/2019问题集锦Image/2.png">
-<meta property="og:updated_time" content="2019-09-29T02:29:07.790Z">
+<meta property="og:updated_time" content="2019-09-29T06:58:53.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019问题集锦">
 <meta name="twitter:description" content="2019 问题集锦">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/29/2019问题集锦/BlogImage/2019问题集锦Image/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/29/2019问题集锦/link1">
 
 
 
@@ -391,7 +391,7 @@
 <!--点击显示更多-->
 <h1 id="关于Xcode打包的时候出现的问题"><a href="#关于Xcode打包的时候出现的问题" class="headerlink" title="关于Xcode打包的时候出现的问题"></a>关于Xcode打包的时候出现的问题</h1><h2 id="问题一：Code-signing-“AipBase-framework”-failed"><a href="#问题一：Code-signing-“AipBase-framework”-failed" class="headerlink" title="问题一：Code signing “AipBase.framework” failed."></a>问题一：Code signing “AipBase.framework” failed.</h2><p>解决： </p>
 <p>步骤1：在xcode中找到包含x86_64, i386的framework。如图所示序号4这里面的3个framework里面(AipBase.framewok,IdcardQuality.framework,AipOcrSdk.framework)都包含着x86_64, i386。</p>
-<p><img src="BlogImage/2019问题集锦Image/1.png" alt="如图1"></p>
+<p><img src="link1" alt="如图1"></p>
 <p>步骤2：用script命令去掉这3个framework里面不支持的x86_64, i386的结构</p>
 <p><img src="BlogImage/2019问题集锦Image/2.png" alt="如图2"></p>
 <p>PS：序号10中粘贴的script命令如下</p>
@@ -399,6 +399,7 @@
 <p>参考：<a href="https://www.jianshu.com/p/c381a07cb758" target="_blank" rel="noopener">参考地址</a></p>
 <h2 id="问题二：更新了mac系统-想pod-install-报错-zsh-usr-local-bin-pod-bad-interpreter-System-Library-Frameworks-Ruby-framework"><a href="#问题二：更新了mac系统-想pod-install-报错-zsh-usr-local-bin-pod-bad-interpreter-System-Library-Frameworks-Ruby-framework" class="headerlink" title="问题二：更新了mac系统,想pod install 报错:zsh: /usr/local/bin/pod: bad interpreter: /System/Library/Frameworks/Ruby.framework"></a>问题二：更新了mac系统,想pod install 报错:zsh: /usr/local/bin/pod: bad interpreter: /System/Library/Frameworks/Ruby.framework</h2><p>解决:终端输入：<code>sudo gem install -n /usr/local/bin cocoapods</code></p>
 <!--2019.9.29 未完待续-->
+
       
     </div>
     
