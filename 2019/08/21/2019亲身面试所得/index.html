@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="2019亲身面试所得">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-11T09:08:43.463Z">
+<meta property="og:updated_time" content="2020-07-05T05:51:27.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019亲身面试所得">
 <meta name="twitter:description" content="2019亲身面试所得">
@@ -452,7 +452,7 @@
 <ul>
 <li><p>优点：<br>1、能适当提高程序的执行效率<br>2、能适当提高资源利用率（CPU，内存利用率）</p>
 </li>
-<li><p>缺点：<br>1、创建线程是有开销的，iOS下主要成本包括：内核数据结构（大约1kb），栈空间（子线程512kb，主线程1mb，也可以使用-setStackSize:设置，但必须是4k的倍数，而且最小是16k），创建线程大约需要90毫秒的创建时间<br>2、如果开启大量的线程，会降低程序的性能<br>3、线程越多，CPU在调度线程上的开销就越<br>4、程序设计更加复杂，比如线程之间的通信，多线程的数据共享  </p>
+<li><p>缺点：<br>1、创建线程是有开销的，iOS下主要成本包括：内核数据结构（大约1kb），栈空间（子线程512kb，主线程1mb，也可以使用-setStackSize:设置，但必须是4k的倍数，而且最小是16k），创建线程大约需要90毫秒的创建时间<br>2、如果开启大量的线程，会降低程序的性能<br>3、线程越多，CPU在调度线程上的开销就越大<br>4、程序设计更加复杂，比如线程之间的通信，多线程的数据共享  </p>
 </li>
 <li><p>多线程在iOS开发中的应用<br>1、主线程：一个iOS程序运行后，默认会开启一条线程，称为主线程或UI线程<br>2、主线程的主要作用：1.显示／刷新UI界面  2.处理UI事件（比如点击事件，滚动事件，拖拽事件等）<br>3、主线程的使用注意：1.不要将比较耗时的操作放到主线程中  2.耗时操作会卡住主线程，严重影响UI的流畅度，给用户一种卡的坏体验<br>4、耗时操作的执行：将耗时操作放在子线程（后台线程，非主线程）<br>5、获得主线程：NSThread <em>main=[NSThread mainThread];<br>6、获得当前线程：NSThread </em>current=[NSThread currentThread];<br>7、判断是否是主线程：1.number==1?  2.类方法 ：BOOL isMain= [NSThread isMainThread];  3.对象方法：BOOL ifMain=[current isMainThread];  </p>
 </li>
@@ -761,7 +761,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -772,7 +772,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -783,7 +783,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

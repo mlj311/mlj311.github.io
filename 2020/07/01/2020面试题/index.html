@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Listen to me">
 <meta property="og:description" content="2020面试题参考">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-03T02:54:43.956Z">
+<meta property="og:updated_time" content="2020-07-05T06:02:33.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020面试题">
 <meta name="twitter:description" content="2020面试题参考">
@@ -427,7 +427,7 @@
 <li>从沙盒中找(当这个图片在之前使用程序的过程中被加载过),找到使用,缓存到内存中.</li>
 <li>从网络上获取,使用,缓存到内存,缓存到沙盒</li>
 </ul>
-<h1 id="4、讲讲iOS事件响应链的原理？"><a href="#4、讲讲iOS事件响应链的原理？" class="headerlink" title="4、讲讲iOS事件响应链的原理？"></a>4、讲讲iOS事件响应链的原理？</h1><p>1、响应链通常是由视图（UIView）构成的<br>2、一个视图的下一个响应者是它视图控制器（UIViewController），然后转给它的父视图（Super View）<br>3、视图控制器的下一个响应者是为其管理的视图的父视图<br>4、单例窗口（UIWindow）的内容视图将指向窗口本身作为它的下一个响应者（需要指出的是，Cocoa Touch应用不像Cocoa应用，它只有一个UIWindow对象，因此整个响应者链要简单点）<br>5、单例的应用（UIApplication）是一个响应者链的终点，它的下一个响应者指向nil，以就属整个循环</p>
+<h1 id="4、讲讲iOS事件响应链的原理？"><a href="#4、讲讲iOS事件响应链的原理？" class="headerlink" title="4、讲讲iOS事件响应链的原理？"></a>4、讲讲iOS事件响应链的原理？</h1><p>1、响应链通常是由视图（UIView）构成的<br>2、一个视图的下一个响应者是它视图控制器（UIViewController），然后转给它的父视图（Super View）<br>3、视图控制器的下一个响应者是为其管理的视图的父视图<br>4、单例窗口（UIWindow）的内容视图将指向窗口本身作为它的下一个响应者（需要指出的是，Cocoa Touch应用不像Cocoa应用，它只有一个UIWindow对象，因此整个响应者链要简单点）<br>5、单例的应用（UIApplication）是一个响应者链的终点，它的下一个响应者指向nil，以结束整个循环</p>
 <h1 id="5、说说多线程？"><a href="#5、说说多线程？" class="headerlink" title="5、说说多线程？"></a>5、说说多线程？</h1><p>一、多线程简述</p>
 <p>线程是程序执行流的最小单元，一个线程包括：独有ID，程序计数器，寄存器集合，堆栈。同一进程可以有多个线程，它们共享进程的全局变量和堆数据。  </p>
 <p>这里的PC指向的是当前的指令地址，通过PC的更新来运行我们的程序，一个线程同一时刻只能执行一条指令。当然我们知道线程和进程都是虚拟概念，实际上PC是CPU核心的寄存器，它是实际存在的，所以也可以说一个CPU核心同一时刻只能执行一线程。</p>
@@ -442,7 +442,7 @@
 </code></pre><p>三、关于“锁”</p>
 <p>多线程会带来线程安全问题。当原子操作不能满足业务时，往往需要使用各种“锁”来保证内存的读写安全。</p>
 <p>常用的锁：互斥锁、读写锁、空转锁、递归锁、同步锁，通常情况下，iOS开发中互斥锁  </p>
-<figure class="highlight plain"><figcaption><span>pthread_rwlock_t  就能满足大部分需求，且性能不错。```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在读取锁失败时，线程可能有两种状态：</span><br><span class="line"></span><br><span class="line">* 空转状态：线程执行空任务循环等待，当锁可用时立即获取锁。</span><br><span class="line">* 挂起状态：线程挂起，当锁可用时需要其他线程唤醒。</span><br><span class="line"></span><br><span class="line">唤醒线程时比较耗时，线程空转需要消耗CPU资源并且时间越长消耗越多，由此可知空转适合少量任务，挂起适合大量任务。</span><br><span class="line"></span><br><span class="line">实际上互斥锁和读写锁都有空转锁的特性，它们在获取锁失败时会先空转一段时间，然后才会挂起，而空转所也不会永远的空转，在特定的空转时间过后仍然会挂起，所以通常情况下不用刻意使用空转锁。</span><br><span class="line"></span><br><span class="line">1、OSSpinLock优先级反转问题</span><br><span class="line"></span><br><span class="line">2、```避免死锁：同一线程重复获取锁导致的死锁，这种情况可以使用递归锁来处理，pthread_mutex_t  使用 pthread_mutex_init_recursive()  方法初始化就能拥有递归锁的特性。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>pthread_rwlock_t  就能满足大部分需求，且性能不错。```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在读取锁失败时，线程可能有两种状态：</span><br><span class="line"></span><br><span class="line">* 空转状态：线程执行空任务循环等待，当锁可用时立即获取锁。</span><br><span class="line">* 挂起状态：线程挂起，当锁可用时需要其他线程唤醒。</span><br><span class="line"></span><br><span class="line">唤醒线程时比较耗时，线程空转需要消耗CPU资源并且时间越长消耗越多，由此可知空转适合少量任务，挂起适合大量任务。</span><br><span class="line"></span><br><span class="line">实际上互斥锁和读写锁都有空转锁的特性，它们在获取锁失败时会先空转一段时间，然后才会挂起，而空转锁也不会永远的空转，在特定的空转时间过后仍然会挂起，所以通常情况下不用刻意使用空转锁。</span><br><span class="line"></span><br><span class="line">1、OSSpinLock优先级反转问题</span><br><span class="line"></span><br><span class="line">2、```避免死锁：同一线程重复获取锁导致的死锁，这种情况可以使用递归锁来处理，pthread_mutex_t  使用 pthread_mutex_init_recursive()  方法初始化就能拥有递归锁的特性。</span><br></pre></td></tr></table></figure>
 <p>3、最小化临界区：将临界区尽量缩小，不会出现线程安全问题的代码就不要用锁来保护了，这样才能提高并发时锁的性能。</p>
 <p>4、时刻注意不可重入方法的安全</p>
 <p>5、编译器的过度优化：合理使用锁的地方仍然线程不安全，而volatile关键字就可以解决这类问题。</p>
@@ -542,6 +542,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/07/06/ERPbug/" rel="prev" title="ERPbug">
+                ERPbug <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -630,7 +634,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +645,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -652,7 +656,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
